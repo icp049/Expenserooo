@@ -16,31 +16,33 @@ struct BudgetListView: View {
         NavigationView {
             List {
                 ForEach(budgets, id: \.id) { budget in
-                    VStack(alignment: .leading) {
-                        Text(budget.name ?? "")
-                            .font(.headline)
-                        Text("Income: \(formatAmount(budget.income))")
-                            .foregroundColor(.secondary)
-
-                        // Display Expenses
-                        if let expenses = budget.expenses {
-                            Section(header: Text("Expenses")) {
-                                ForEach(expenses.allObjects as! [Expense], id: \.self) { expense in
-                                    HStack {
-                                        Text("\(expense.name ?? "")")
-                                        Spacer()
-                                        Text("\(formatAmount(expense.amount))")
+                    NavigationLink(destination: BudgetDetailView(budget: budget)) {
+                        VStack(alignment: .leading) {
+                            Text(budget.name ?? "")
+                                .font(.headline)
+                            Text("Income: \(formatAmount(budget.income))")
+                                .foregroundColor(.secondary)
+                            
+                            // Display Expenses
+                            if let expenses = budget.expenses {
+                                Section(header: Text("Expenses")) {
+                                    ForEach(expenses.allObjects as! [Expense], id: \.self) { expense in
+                                        HStack {
+                                            Text("\(expense.name ?? "")")
+                                            Spacer()
+                                            Text("\(formatAmount(expense.amount))")
+                                        }
                                     }
+                                    
+                                    // Display the total expense using the new function
+                                    Text("Total Expense:")
+                                    Text("\(formatAmount(calculateTotalExpense(expenses)))")
+                                    
+                                    
+                                    
+                                    Text("Extra Money:")
+                                    Text("\(formatAmount(budget.income - calculateTotalExpense(expenses)))")
                                 }
-
-                                // Display the total expense using the new function
-                                Text("Total Expense:")
-                                Text("\(formatAmount(calculateTotalExpense(expenses)))")
-                                
-                                
-                                
-                                Text("Extra Money:")
-                              Text("\(formatAmount(budget.income - calculateTotalExpense(expenses)))")
                             }
                         }
                     }
