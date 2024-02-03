@@ -10,9 +10,7 @@ struct BudgetListView: View {
         animation: .default
     ) var budgets: FetchedResults<Budget>
     
-    
     @State private var showingAddView = false
-    
     
     var body: some View {
         NavigationView {
@@ -34,6 +32,10 @@ struct BudgetListView: View {
                                         Text("\(formatAmount(expense.amount))")
                                     }
                                 }
+
+                                // Display the total expense using the new function
+                                Text("Total Expense:")
+                                Text("\(formatAmount(calculateTotalExpense(expenses)))")
                             }
                         }
                     }
@@ -55,10 +57,21 @@ struct BudgetListView: View {
         }
         .navigationViewStyle(.stack)
     }
+
+    // Helper function to calculate total expense
+    private func calculateTotalExpense(_ expenses: NSSet) -> Double {
+        return expenses.allObjects.compactMap { ($0 as? Expense)?.amount }.reduce(0, +)
+    }
+
+    // Helper function to format amounts with two decimal places
+    private func formatAmount(_ amount: Double) -> String {
+        return String(format: "%.2f", amount)
+    }
 }
 
-// Helper function to format amounts with two decimal places
-private func formatAmount(_ amount: Double) -> String {
-    return String(format: "%.2f", amount)
+struct BudgetListView_Previews: PreviewProvider {
+    static var previews: some View {
+        BudgetListView()
+    }
 }
 
