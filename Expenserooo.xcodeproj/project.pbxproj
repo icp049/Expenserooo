@@ -7,27 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A69293392B6DE8F0001AB512 /* AddIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69293382B6DE8F0001AB512 /* AddIncomeView.swift */; };
 		A692933C2B6DE95F001AB512 /* RUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692933B2B6DE95F001AB512 /* RUButton.swift */; };
-		A692933E2B6DEA9D001AB512 /* IncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692933D2B6DEA9D001AB512 /* IncomeView.swift */; };
+		A69293472B6DF5BF001AB512 /* BudgetModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A69293452B6DF5BF001AB512 /* BudgetModel.xcdatamodeld */; };
+		A69293492B6DF786001AB512 /* AddBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69293482B6DF786001AB512 /* AddBudgetView.swift */; };
+		A692934D2B6EA968001AB512 /* BudgetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692934C2B6EA968001AB512 /* BudgetListView.swift */; };
 		A6A74BC22B6DDEA1005629AF /* ExpenseroooApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A74BC12B6DDEA1005629AF /* ExpenseroooApp.swift */; };
-		A6A74BC42B6DDEA1005629AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A74BC32B6DDEA1005629AF /* ContentView.swift */; };
 		A6A74BC62B6DDEAA005629AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6A74BC52B6DDEAA005629AF /* Assets.xcassets */; };
 		A6A74BC92B6DDEAA005629AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6A74BC82B6DDEAA005629AF /* Preview Assets.xcassets */; };
-		A6A74BD42B6DE0E1005629AF /* IncomeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6A74BD22B6DE0E0005629AF /* IncomeModel.xcdatamodeld */; };
 		A6A74BD62B6DE1F4005629AF /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A74BD52B6DE1F3005629AF /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A69293382B6DE8F0001AB512 /* AddIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeView.swift; sourceTree = "<group>"; };
 		A692933B2B6DE95F001AB512 /* RUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUButton.swift; sourceTree = "<group>"; };
-		A692933D2B6DEA9D001AB512 /* IncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeView.swift; sourceTree = "<group>"; };
+		A69293462B6DF5BF001AB512 /* BudgetModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetModel.xcdatamodel; sourceTree = "<group>"; };
+		A69293482B6DF786001AB512 /* AddBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetView.swift; sourceTree = "<group>"; };
+		A692934C2B6EA968001AB512 /* BudgetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListView.swift; sourceTree = "<group>"; };
 		A6A74BBE2B6DDEA1005629AF /* Expenserooo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenserooo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A74BC12B6DDEA1005629AF /* ExpenseroooApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseroooApp.swift; sourceTree = "<group>"; };
-		A6A74BC32B6DDEA1005629AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A6A74BC52B6DDEAA005629AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6A74BC82B6DDEAA005629AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A6A74BD32B6DE0E0005629AF /* IncomeModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IncomeModel.xcdatamodel; sourceTree = "<group>"; };
 		A6A74BD52B6DE1F3005629AF /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,7 +80,6 @@
 				A6A74BD02B6DDF08005629AF /* ViewController */,
 				A6A74BCF2B6DDF01005629AF /* Views */,
 				A6A74BC12B6DDEA1005629AF /* ExpenseroooApp.swift */,
-				A6A74BC32B6DDEA1005629AF /* ContentView.swift */,
 				A6A74BC52B6DDEAA005629AF /* Assets.xcassets */,
 				A6A74BC72B6DDEAA005629AF /* Preview Content */,
 			);
@@ -100,8 +97,8 @@
 		A6A74BCF2B6DDF01005629AF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A69293382B6DE8F0001AB512 /* AddIncomeView.swift */,
-				A692933D2B6DEA9D001AB512 /* IncomeView.swift */,
+				A69293482B6DF786001AB512 /* AddBudgetView.swift */,
+				A692934C2B6EA968001AB512 /* BudgetListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,8 +113,8 @@
 		A6A74BD12B6DDF15005629AF /* DataController */ = {
 			isa = PBXGroup;
 			children = (
-				A6A74BD22B6DE0E0005629AF /* IncomeModel.xcdatamodeld */,
 				A6A74BD52B6DE1F3005629AF /* DataController.swift */,
+				A69293452B6DF5BF001AB512 /* BudgetModel.xcdatamodeld */,
 			);
 			path = DataController;
 			sourceTree = "<group>";
@@ -192,13 +189,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A69293392B6DE8F0001AB512 /* AddIncomeView.swift in Sources */,
-				A6A74BC42B6DDEA1005629AF /* ContentView.swift in Sources */,
 				A6A74BD62B6DE1F4005629AF /* DataController.swift in Sources */,
 				A6A74BC22B6DDEA1005629AF /* ExpenseroooApp.swift in Sources */,
+				A69293492B6DF786001AB512 /* AddBudgetView.swift in Sources */,
+				A69293472B6DF5BF001AB512 /* BudgetModel.xcdatamodeld in Sources */,
 				A692933C2B6DE95F001AB512 /* RUButton.swift in Sources */,
-				A6A74BD42B6DE0E1005629AF /* IncomeModel.xcdatamodeld in Sources */,
-				A692933E2B6DEA9D001AB512 /* IncomeView.swift in Sources */,
+				A692934D2B6EA968001AB512 /* BudgetListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,13 +397,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A6A74BD22B6DE0E0005629AF /* IncomeModel.xcdatamodeld */ = {
+		A69293452B6DF5BF001AB512 /* BudgetModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A6A74BD32B6DE0E0005629AF /* IncomeModel.xcdatamodel */,
+				A69293462B6DF5BF001AB512 /* BudgetModel.xcdatamodel */,
 			);
-			currentVersion = A6A74BD32B6DE0E0005629AF /* IncomeModel.xcdatamodel */;
-			path = IncomeModel.xcdatamodeld;
+			currentVersion = A69293462B6DF5BF001AB512 /* BudgetModel.xcdatamodel */;
+			path = BudgetModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

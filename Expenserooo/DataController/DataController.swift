@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 class DataController: ObservableObject{
-    let container  = NSPersistentContainer(name: "IncomeModel")
+    let container  = NSPersistentContainer(name: "BudgetModel")
 
     init(){
         container.loadPersistentStores {desc, error in
@@ -31,20 +31,22 @@ class DataController: ObservableObject{
     }
 
    }
-
-    func addIncome(name: String, amount: Double, context: NSManagedObjectContext){
     
-    let income = Income(context:context)
-    income.id = UUID()
-    income.date = Date()
-    income.name = name
-    income.amount = amount
     
-    save(context:context)
+    func addBudget(name: String, income: Double, expenses: [Expense], context: NSManagedObjectContext) {
+        let budget = Budget(context: context)
+        budget.id = UUID()
+        budget.date = Date()
+        budget.name = name
+        budget.income = income
 
-   }
+        for expense in expenses {
+            budget.addToExpenses(expense)
+        }
 
-    func editIncome(income: Income, name: String, amount: Double, context:NSManagedObjectContext){
+        save(context: context)
+    }
+   /*/ func editBudget(income: Income, name: String, amount: Double, context:NSManagedObjectContext){
     income.date = Date()
     income.name = name
     income.amount = amount
@@ -52,5 +54,6 @@ class DataController: ObservableObject{
 
     save(context:context)
    }
+    */
 
 }
