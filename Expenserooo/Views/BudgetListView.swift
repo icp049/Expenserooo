@@ -36,6 +36,11 @@ struct BudgetListView: View {
                                 // Display the total expense using the new function
                                 Text("Total Expense:")
                                 Text("\(formatAmount(calculateTotalExpense(expenses)))")
+                                
+                                
+                                
+                                Text("Extra Money:")
+                              Text("\(formatAmount(budget.income - calculateTotalExpense(expenses)))")
                             }
                         }
                     }
