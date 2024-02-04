@@ -46,14 +46,22 @@ class DataController: ObservableObject{
 
         save(context: context)
     }
-   /*/ func editBudget(income: Income, name: String, amount: Double, context:NSManagedObjectContext){
-    income.date = Date()
-    income.name = name
-    income.amount = amount
-  
+    
+    
+    
+    func editBudget(budget: Budget, name: String, income: Double, expenses: [Expense], context: NSManagedObjectContext) {
+        budget.date = Date()
+        budget.name = name
+        budget.income = income
 
-    save(context:context)
-   }
-    */
+        // Assuming you want to update the expenses as well, remove existing and add new ones
+        budget.removeFromExpenses(budget.expenses ?? NSSet())
+        for expense in expenses {
+            budget.addToExpenses(expense)
+        }
+
+        save(context: context)
+    }
+
 
 }

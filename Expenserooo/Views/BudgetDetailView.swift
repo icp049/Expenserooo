@@ -14,7 +14,11 @@ struct BudgetDetailView: View {
                 Section(header: Text("Expenses")) {
                     ForEach(expenses.allObjects as! [Expense], id: \.self) { expense in
                         HStack {
-                       Spacer()
+                            Text(expense.name ?? "")
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Text(expense.category ?? "")
+                            Spacer()
                             Text("\(formatAmount(expense.amount))")
                         }
                     }
@@ -39,6 +43,5 @@ struct BudgetDetailView: View {
         return String(format: "%.2f", amount)
     }
 }
-
 
 
