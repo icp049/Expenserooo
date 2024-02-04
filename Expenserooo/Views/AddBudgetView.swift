@@ -64,12 +64,17 @@ struct AddBudgetView: View {
                         Text("\(expense.amount)")
                         Spacer()
                        
-                                               Button("Remove") {
+                        Button(action: {
                                                    if let index = expenses.firstIndex(of: expense) {
                                                        expenses.remove(at: index)
                                                    }
+                                               }) {
+                                                   Image(systemName: "trash")
+                                                       .foregroundColor(.red)
                                                }
-                    }
+                                           }
+                    
+                
                 }
             }
 
