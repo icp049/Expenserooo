@@ -18,11 +18,11 @@ struct AddBudgetView: View {
 
     var body: some View {
         VStack {
-            TextField("Income Source", text: $name)
+            TextField("Budget Source", text: $name)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
 
-            TextField("Amount", text: $amount)
+            TextField("Budget Amount", text: $amount)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
 

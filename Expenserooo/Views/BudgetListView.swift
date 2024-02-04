@@ -8,13 +8,30 @@ struct BudgetListView: View {
         entity: Budget.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Budget.date, ascending: false)],
         animation: .default
-    ) var budgets: FetchedResults<Budget>
+    )
+    
+    
+ 
+
+    var budgets: FetchedResults<Budget>
     
     @State private var showingAddView = false
+    @State private var showingAddIncomeView = false
+    @State private var showingIncomeView = false
     
     var body: some View {
         NavigationView {
+            
+          
+            
             List {
+                
+                Section(header: Text("Total Overall Expense")) {
+                        Text("\(formatAmount(calculateOverallTotalExpense()))")
+                    }
+              
+
+                
                 ForEach(budgets, id: \.id) { budget in
                     NavigationLink(destination: BudgetDetailView(budget: budget)) {
                         VStack(alignment: .leading) {
@@ -67,6 +84,40 @@ struct BudgetListView: View {
             .sheet(isPresented: $showingAddView) {
                 AddBudgetView()
             }
+            
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingAddIncomeView.toggle()
+                    } label: {
+                        Label("Add Account", systemImage: "plus")
+                    }
+                }
+                
+            }
+            .sheet(isPresented: $showingAddIncomeView) {
+                AddIncomeView()
+            }
+            
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingIncomeView.toggle()
+                    } label: {
+                        Label("Add Account", systemImage: "plus")
+                    }
+                }
+                
+            }
+            .sheet(isPresented: $showingIncomeView) {
+                IncomeView()
+            }
+            
+            
+            
+            
         }
         .navigationViewStyle(.stack)
     }
@@ -92,6 +143,23 @@ struct BudgetListView: View {
     private func formatAmount(_ amount: Double) -> String {
         return String(format: "%.2f", amount)
     }
+    
+    
+    // ...
+
+    private func calculateOverallTotalExpense() -> Double {
+        let overallTotalExpense = budgets.reduce(0) { (result, budget) in
+            if let expenses = budget.expenses {
+                return result + calculateTotalExpense(expenses)
+            } else {
+                return result
+            }
+        }
+        return overallTotalExpense
+    }
+
+    // ...
+
 }
 
 struct BudgetListView_Previews: PreviewProvider {

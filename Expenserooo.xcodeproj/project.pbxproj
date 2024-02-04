@@ -16,6 +16,7 @@
 		A69293532B6F6F85001AB512 /* EditBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69293522B6F6F85001AB512 /* EditBudgetView.swift */; };
 		A69293552B6F80EA001AB512 /* StackedBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69293542B6F80EA001AB512 /* StackedBarChartView.swift */; };
 		A69293572B7014AF001AB512 /* AddIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69293562B7014AF001AB512 /* AddIncomeView.swift */; };
+		A69293592B702051001AB512 /* IncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69293582B702051001AB512 /* IncomeView.swift */; };
 		A6A74BC22B6DDEA1005629AF /* ExpenseroooApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A74BC12B6DDEA1005629AF /* ExpenseroooApp.swift */; };
 		A6A74BC62B6DDEAA005629AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6A74BC52B6DDEAA005629AF /* Assets.xcassets */; };
 		A6A74BC92B6DDEAA005629AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6A74BC82B6DDEAA005629AF /* Preview Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		A69293522B6F6F85001AB512 /* EditBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBudgetView.swift; sourceTree = "<group>"; };
 		A69293542B6F80EA001AB512 /* StackedBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedBarChartView.swift; sourceTree = "<group>"; };
 		A69293562B7014AF001AB512 /* AddIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeView.swift; sourceTree = "<group>"; };
+		A69293582B702051001AB512 /* IncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeView.swift; sourceTree = "<group>"; };
 		A6A74BBE2B6DDEA1005629AF /* Expenserooo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenserooo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A74BC12B6DDEA1005629AF /* ExpenseroooApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseroooApp.swift; sourceTree = "<group>"; };
 		A6A74BC52B6DDEAA005629AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				A69293522B6F6F85001AB512 /* EditBudgetView.swift */,
 				A69293542B6F80EA001AB512 /* StackedBarChartView.swift */,
 				A69293562B7014AF001AB512 /* AddIncomeView.swift */,
+				A69293582B702051001AB512 /* IncomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A69293512B6F6C48001AB512 /* PieChartView.swift in Sources */,
+				A69293592B702051001AB512 /* IncomeView.swift in Sources */,
 				A69293552B6F80EA001AB512 /* StackedBarChartView.swift in Sources */,
 				A6A74BD62B6DE1F4005629AF /* DataController.swift in Sources */,
 				A6A74BC22B6DDEA1005629AF /* ExpenseroooApp.swift in Sources */,
