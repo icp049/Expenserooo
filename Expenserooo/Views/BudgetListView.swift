@@ -45,6 +45,8 @@ struct BudgetListView: View {
                                     
                                     Text("Extra Money:")
                                     Text("\(formatAmount(budget.income - calculateTotalExpense(expenses)))")
+                                    
+                                    
                                 }
                             }
                         }
