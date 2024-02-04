@@ -33,6 +33,20 @@ class DataController: ObservableObject{
    }
     
     
+    func addIncome(name: String, amount: Double, context: NSManagedObjectContext) {
+        let income = Income(context: context)
+        income.id = UUID()
+        income.date = Date()
+        income.name = name
+        income.amount = amount
+
+       
+
+        save(context: context)
+    }
+    
+    
+    
     func addBudget(name: String, income: Double, expenses: [Expense], context: NSManagedObjectContext) {
         let budget = Budget(context: context)
         budget.id = UUID()
@@ -62,6 +76,11 @@ class DataController: ObservableObject{
 
         save(context: context)
     }
+    
+    
+    
+    
+    
 
 
 }
