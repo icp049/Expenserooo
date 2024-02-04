@@ -7,7 +7,9 @@ struct AddBudgetView: View {
     @State private var name = ""
     @State private var amount = ""
     @State private var expenseName = ""
+    @State private var expenseCategory = ""
     @State private var expenseAmount = ""
+    
 
     @State private var expenses: [Expense] = []
 
@@ -26,6 +28,10 @@ struct AddBudgetView: View {
                     TextField("Expense Name", text: $expenseName)
                         .autocapitalization(.none)
                         .autocorrectionDisabled()
+                    
+                    TextField("Expense Category", text: $expenseCategory)
+                        .autocapitalization(.none)
+                        .autocorrectionDisabled()
 
                     TextField("Expense Amount", text: $expenseAmount)
                         .autocapitalization(.none)
@@ -34,11 +40,14 @@ struct AddBudgetView: View {
                     Button("Add Expense") {
                         let newExpense = Expense(context: managedObjContext)
                         newExpense.name = expenseName
+                        newExpense.category = expenseCategory
                         newExpense.amount = Double(expenseAmount) ?? 0.0
+                    
 
                         expenses.append(newExpense)
                         // Optionally clear the text fields after adding an expense
                         expenseName = ""
+                        expenseCategory = ""
                         expenseAmount = ""
                     }
                 }
@@ -49,7 +58,12 @@ struct AddBudgetView: View {
                     HStack {
                         Text("\(expense.name ?? "")")
                         Spacer()
+                        Text("\(expense.category ?? "")")
+                        Spacer()
                         Text("\(expense.amount)")
+                        Spacer()
+                 
+                        
                     }
                 }
             }
@@ -63,11 +77,13 @@ struct AddBudgetView: View {
                             name: name,
                             income: Double(amount) ?? 0.0,
                             expenses: expenses,
-                            context: managedObjContext
-                        )
+                            context: managedObjContext)
+                            
+                            dismiss()
+                        
 
-                        // Optionally dismiss the view after adding the budget
-                        dismiss()
+              
+                       
                     }
                     .padding()
 

@@ -31,6 +31,9 @@ struct BudgetListView: View {
                                             Text("\(expense.name ?? "")")
                                             Spacer()
                                             Text("\(formatAmount(expense.amount))")
+                                            Spacer()
+                                            Text("\(expense.category ?? "")")
+                                            
                                         }
                                     }
                                     
