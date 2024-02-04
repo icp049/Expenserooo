@@ -63,6 +63,12 @@ struct AddBudgetView: View {
                         Spacer()
                         Text("\(expense.amount)")
                         Spacer()
+                       
+                                               Button("Remove") {
+                                                   if let index = expenses.firstIndex(of: expense) {
+                                                       expenses.remove(at: index)
+                                                   }
+                                               }
                     }
                 }
             }
