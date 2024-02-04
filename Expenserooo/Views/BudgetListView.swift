@@ -50,6 +50,7 @@ struct BudgetListView: View {
                         }
                     }
                 }
+                .onDelete(perform: deleteBudget)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -67,6 +68,18 @@ struct BudgetListView: View {
         }
         .navigationViewStyle(.stack)
     }
+    
+    
+    
+    private func deleteBudget(offsets: IndexSet) {
+            withAnimation {
+                offsets.map { budgets[$0] }
+                    .forEach(managedObjContext.delete)
+                
+                // Saves to our database
+                DataController().save(context: managedObjContext)
+            }
+        }
 
     // Helper function to calculate total expense
     private func calculateTotalExpense(_ expenses: NSSet) -> Double {

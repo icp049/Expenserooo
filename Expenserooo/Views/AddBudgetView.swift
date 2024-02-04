@@ -11,6 +11,8 @@ struct AddBudgetView: View {
     @State private var expenseAmount = ""
     
     let categorySelection = ["Bills","Leisure", "Food", "Travel"]
+ 
+
     
     @State private var expenses: [Expense] = []
 
