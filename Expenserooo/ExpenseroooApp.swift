@@ -7,7 +7,7 @@ struct ExpenseroooApp: App {
     var body: some Scene {
         WindowGroup {
             // Pass the DataController to BudgetListView
-    BudgetListView()
+      BudgetListView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController) // Pass DataController as an environment object
         }

@@ -32,7 +32,6 @@ class DataController: ObservableObject{
 
    }
     
-    
     func addIncome(name: String, amount: Double, context: NSManagedObjectContext) {
         let income = Income(context: context)
         income.id = UUID()
@@ -40,11 +39,13 @@ class DataController: ObservableObject{
         income.name = name
         income.amount = amount
 
-       
+        // Assuming Chequing is the parent entity and the relationship is named 'incomes'
+        if let chequing = fetchChequing(context: context) {
+            chequing.total += amount
+        }
 
         save(context: context)
     }
-    
     
     
     func addBudget(name: String, income: Double, expenses: [Expense], context: NSManagedObjectContext) {
@@ -80,6 +81,17 @@ class DataController: ObservableObject{
     
     
     
+    func fetchChequing(context: NSManagedObjectContext) -> Chequing? {
+        let fetchRequest: NSFetchRequest<Chequing> = Chequing.fetchRequest()
+
+        do {
+            let chequings = try context.fetch(fetchRequest)
+            return chequings.first
+        } catch {
+            print("Error fetching Chequing entity: \(error.localizedDescription)")
+            return nil
+        }
+    }
     
 
 

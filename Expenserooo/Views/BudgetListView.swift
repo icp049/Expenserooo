@@ -25,13 +25,6 @@ struct BudgetListView: View {
           
             
             List {
-                
-                Section(header: Text("Total Overall Expense")) {
-                        Text("\(formatAmount(calculateOverallTotalExpense()))")
-                    }
-              
-
-                
                 ForEach(budgets, id: \.id) { budget in
                     NavigationLink(destination: BudgetDetailView(budget: budget)) {
                         VStack(alignment: .leading) {
@@ -86,36 +79,6 @@ struct BudgetListView: View {
             }
             
             
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingAddIncomeView.toggle()
-                    } label: {
-                        Label("Add Account", systemImage: "plus")
-                    }
-                }
-                
-            }
-            .sheet(isPresented: $showingAddIncomeView) {
-                AddIncomeView()
-            }
-            
-            
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingIncomeView.toggle()
-                    } label: {
-                        Label("Add Account", systemImage: "plus")
-                    }
-                }
-                
-            }
-            .sheet(isPresented: $showingIncomeView) {
-                IncomeView()
-            }
-            
-            
             
             
         }
@@ -145,20 +108,7 @@ struct BudgetListView: View {
     }
     
     
-    // ...
-
-    private func calculateOverallTotalExpense() -> Double {
-        let overallTotalExpense = budgets.reduce(0) { (result, budget) in
-            if let expenses = budget.expenses {
-                return result + calculateTotalExpense(expenses)
-            } else {
-                return result
-            }
-        }
-        return overallTotalExpense
-    }
-
-    // ...
+  
 
 }
 
