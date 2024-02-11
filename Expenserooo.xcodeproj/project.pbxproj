@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A606AAC62B78974500B3A93A /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606AAC52B78974500B3A93A /* DoubleFormatter.swift */; };
 		A692933C2B6DE95F001AB512 /* RUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692933B2B6DE95F001AB512 /* RUButton.swift */; };
 		A69293472B6DF5BF001AB512 /* BudgetModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A69293452B6DF5BF001AB512 /* BudgetModel.xcdatamodeld */; };
 		A69293492B6DF786001AB512 /* AddBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69293482B6DF786001AB512 /* AddBudgetView.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A606AAC52B78974500B3A93A /* DoubleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatter.swift; sourceTree = "<group>"; };
 		A692933B2B6DE95F001AB512 /* RUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUButton.swift; sourceTree = "<group>"; };
 		A69293462B6DF5BF001AB512 /* BudgetModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetModel.xcdatamodel; sourceTree = "<group>"; };
 		A69293482B6DF786001AB512 /* AddBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 		A692933F2B6DECB3001AB512 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A606AAC52B78974500B3A93A /* DoubleFormatter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				A69293532B6F6F85001AB512 /* EditBudgetView.swift in Sources */,
 				A69293492B6DF786001AB512 /* AddBudgetView.swift in Sources */,
 				A69293472B6DF5BF001AB512 /* BudgetModel.xcdatamodeld in Sources */,
+				A606AAC62B78974500B3A93A /* DoubleFormatter.swift in Sources */,
 				A692933C2B6DE95F001AB512 /* RUButton.swift in Sources */,
 				A692934D2B6EA968001AB512 /* BudgetListView.swift in Sources */,
 			);

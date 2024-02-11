@@ -56,7 +56,7 @@ struct BudgetListView: View {
                                 }
                             }
                         }
-                        padding(.vertical, 8) // spacer of each list content
+                        
                     }
                 }
                 .onDelete(perform: deleteBudget)
@@ -98,13 +98,6 @@ struct BudgetListView: View {
     private func calculateTotalExpense(_ expenses: NSSet) -> Double {
         return expenses.allObjects.compactMap { ($0 as? Expense)?.amount }.reduce(0, +)
     }
-    
-    // Helper function to format amounts with two decimal places
-    private func formatAmount(_ amount: Double) -> String {
-        return String(format: "%.2f", amount)
-    }
-    
-    
     
     
 }

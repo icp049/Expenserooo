@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 struct BudgetDetailView: View {
     let budget: Budget
 
@@ -43,9 +44,11 @@ struct BudgetDetailView: View {
         return expenses.allObjects.compactMap { ($0 as? Expense)?.amount }.reduce(0, +)
     }
 
-    private func formatAmount(_ amount: Double) -> String {
-        return String(format: "%.2f", amount)
-    }
+    
+    
+
+
+    
 
     private func prepareChartData(expenses: NSSet) -> [(Double, Color)] {
         var categoryExpenses: [String: Double] = [:]
