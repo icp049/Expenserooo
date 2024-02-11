@@ -16,8 +16,7 @@ struct BudgetListView: View {
     var budgets: FetchedResults<Budget>
     
     @State private var showingAddView = false
-    @State private var showingAddIncomeView = false
-    @State private var showingIncomeView = false
+
     
     var body: some View {
         NavigationView {
