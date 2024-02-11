@@ -17,12 +17,12 @@ struct RUButton: View {
         } label: {
             Text(title)
                 .foregroundColor(.white)
-            .bold()
-            .frame(width: 200, height: 40) // Adjust the width and height as needed
+                .bold()
+                .frame(width: 200, height: 40) // Adjust the width and height as needed
             .background(RoundedRectangle(cornerRadius: 10).foregroundColor(background))        }
     }
-        
-    }
+    
+}
 
 
 struct RUButton_Previews: PreviewProvider {
