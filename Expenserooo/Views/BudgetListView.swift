@@ -3,7 +3,7 @@ import SwiftUI
 struct BudgetListView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @EnvironmentObject var dataController: DataController // Access DataController as an environment object
-
+    
     @FetchRequest(
         entity: Budget.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Budget.date, ascending: false)],
@@ -11,18 +11,15 @@ struct BudgetListView: View {
     )
     
     
- 
-
+    
+    
     var budgets: FetchedResults<Budget>
     
     @State private var showingAddView = false
-
+    
     
     var body: some View {
         NavigationView {
-            
-          
-            
             List {
                 ForEach(budgets, id: \.id) { budget in
                     NavigationLink(destination: BudgetDetailView(budget: budget)) {
@@ -59,6 +56,7 @@ struct BudgetListView: View {
                                 }
                             }
                         }
+                        padding(.vertical, 8) // spacer of each list content
                     }
                 }
                 .onDelete(perform: deleteBudget)
@@ -87,28 +85,28 @@ struct BudgetListView: View {
     
     
     private func deleteBudget(offsets: IndexSet) {
-            withAnimation {
-                offsets.map { budgets[$0] }
-                    .forEach(managedObjContext.delete)
-                
-                // Saves to our database
-                DataController().save(context: managedObjContext)
-            }
+        withAnimation {
+            offsets.map { budgets[$0] }
+                .forEach(managedObjContext.delete)
+            
+            // Saves to our database
+            DataController().save(context: managedObjContext)
         }
-
+    }
+    
     // Helper function to calculate total expense
     private func calculateTotalExpense(_ expenses: NSSet) -> Double {
         return expenses.allObjects.compactMap { ($0 as? Expense)?.amount }.reduce(0, +)
     }
-
+    
     // Helper function to format amounts with two decimal places
     private func formatAmount(_ amount: Double) -> String {
         return String(format: "%.2f", amount)
     }
     
     
-  
-
+    
+    
 }
 
 struct BudgetListView_Previews: PreviewProvider {
