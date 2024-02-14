@@ -48,6 +48,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A606AAC72B7C5CFF00B3A93A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A692933A2B6DE939001AB512 /* COmponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +90,7 @@
 		A6A74BC02B6DDEA1005629AF /* Expenserooo */ = {
 			isa = PBXGroup;
 			children = (
+				A606AAC72B7C5CFF00B3A93A /* Models */,
 				A692933F2B6DECB3001AB512 /* Helpers */,
 				A692933A2B6DE939001AB512 /* COmponents */,
 				A6A74BD12B6DDF15005629AF /* DataController */,

@@ -26,6 +26,9 @@ struct AddBudgetView: View {
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
             
+            
+           
+            
             TextField("Expense Name", text: $expenseName)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
