@@ -16,6 +16,7 @@ struct BudgetListView: View {
     var budgets: FetchedResults<Budget>
     
     @State private var showingAddView = false
+    @State private var showAddIncomeView = false
     
     
     
@@ -80,15 +81,15 @@ struct BudgetListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        showingAddView.toggle()
+                        showAddIncomeView.toggle()
                     } label: {
                         Label("Add Income", systemImage: "plus")
                     }
                 }
                 
             }
-            .sheet(isPresented: $showingAddView) {
-                AddBudgetView()
+            .sheet(isPresented: $showAddIncomeView) {
+                AddIncomeView()
             }
             
             
