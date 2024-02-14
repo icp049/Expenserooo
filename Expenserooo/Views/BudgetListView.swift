@@ -68,7 +68,7 @@ struct BudgetListView: View {
                     Button {
                         showingAddView.toggle()
                     } label: {
-                        Label("Add Account", systemImage: "plus")
+                        Label("Add Budget", systemImage: "plus")
                     }
                 }
                 
@@ -76,6 +76,23 @@ struct BudgetListView: View {
             .sheet(isPresented: $showingAddView) {
                 AddBudgetView()
             }
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showingAddView.toggle()
+                    } label: {
+                        Label("Add Income", systemImage: "plus")
+                    }
+                }
+                
+            }
+            .sheet(isPresented: $showingAddView) {
+                AddBudgetView()
+            }
+            
+            
+            
             
             
             
