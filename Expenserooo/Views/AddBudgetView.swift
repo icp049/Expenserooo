@@ -5,7 +5,7 @@ struct AddBudgetView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var name = ""
-    @State private var amount = ""
+    @State private var sourceamount = ""
     @State private var expenseName = ""
     @State private var expenseCategory = ""
     @State private var expenseAmount = ""
@@ -18,11 +18,11 @@ struct AddBudgetView: View {
     
     var body: some View {
         VStack {
-            TextField("Budget Source", text: $name)
+            TextField("Budget Name", text: $name)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
             
-            TextField("Budget Amount", text: $amount)
+            TextField("Budget Amount", text: $sourceamount)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
             
@@ -83,7 +83,7 @@ struct AddBudgetView: View {
             Button("Add Budget") {
                 DataController().addBudget(
                     name: name,
-                    income: Double(amount) ?? 0.0,
+                    sourceamount: Double(sourceamount) ?? 0.0,
                     expenses: expenses,
                     context: managedObjContext)
                 dismiss()

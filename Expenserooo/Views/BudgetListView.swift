@@ -28,7 +28,7 @@ struct BudgetListView: View {
                         VStack(alignment: .leading) {
                             Text(budget.name ?? "")
                                 .font(.headline)
-                            Text("Income: \(formatAmount(budget.income))")
+                            Text("Income: \(formatAmount(budget.sourceamount))")
                                 .foregroundColor(.secondary)
                             
                             // Display Expenses
@@ -52,7 +52,7 @@ struct BudgetListView: View {
                                     
                                     
                                     Text("Extra Money:")
-                                    Text("\(formatAmount(budget.income - calculateTotalExpense(expenses)))")
+                                    Text("\(formatAmount(budget.sourceamount - calculateTotalExpense(expenses)))")
                                     
                                     
                                 }

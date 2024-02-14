@@ -8,7 +8,7 @@ struct BudgetDetailView: View {
         VStack(alignment: .leading) {
             Text(budget.name ?? "")
                 .font(.headline)
-            Text("Income: \(formatAmount(budget.income))")
+            Text("Income: \(formatAmount(budget.sourceamount))")
                 .foregroundColor(.secondary)
 
             if let expenses = budget.expenses {
@@ -28,7 +28,7 @@ struct BudgetDetailView: View {
                     Text("\(formatAmount(calculateTotalExpense(expenses)))")
 
                     Text("Extra Money:")
-                    Text("\(formatAmount(budget.income - calculateTotalExpense(expenses)))")
+                    Text("\(formatAmount(budget.sourceamount - calculateTotalExpense(expenses)))")
 
                     // Integrate Pie Chart here
                     PieChartView(slices: prepareChartData(expenses: expenses))
