@@ -74,11 +74,10 @@ struct AddBudgetView: View {
                         }
                     }
                     
-                    
                 }
             }
             
-            Button("Add Income") {
+            Button("Add Budget") {
                 DataController().addBudget(
                     name: name,
                     income: Double(amount) ?? 0.0,

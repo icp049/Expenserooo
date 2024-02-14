@@ -45,10 +45,6 @@ struct BudgetDetailView: View {
     }
 
     
-    
-
-
-    
 
     private func prepareChartData(expenses: NSSet) -> [(Double, Color)] {
         var categoryExpenses: [String: Double] = [:]

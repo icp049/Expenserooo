@@ -18,6 +18,8 @@ struct BudgetListView: View {
     @State private var showingAddView = false
     
     
+    
+    
     var body: some View {
         NavigationView {
             List {
