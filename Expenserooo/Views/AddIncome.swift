@@ -1,20 +1,40 @@
-//
-//  AddIncome.swift
-//  Expenserooo
-//
-//  Created by Ian Pedeglorio on 2024-02-13.
-//
-
 import SwiftUI
 
-struct AddIncome: View {
+struct AddIncomeView: View {
+    @Environment(\.managedObjectContext) var managedObjContext
+    @Environment(\.dismiss) var dismiss
+    
+    @State private var name = ""
+    @State private var amount = ""
+   
+    
+
+    
+    
+    
+
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TextField("Income Name", text: $name)
+                .autocapitalization(.none)
+                .autocorrectionDisabled()
+            
+            TextField("Income Amount", text: $amount)
+                .autocapitalization(.none)
+                .autocorrectionDisabled()
+            
+        
+            
+            Button("Add Income") {
+                DataController().addIncome(
+                    name: name,
+                   amount: Double(amount) ?? 0.0,
+                    context: managedObjContext)
+                dismiss()
+            }
+            .padding()
+        }
     }
 }
 
-struct AddIncome_Previews: PreviewProvider {
-    static var previews: some View {
-        AddIncome()
-    }
-}
