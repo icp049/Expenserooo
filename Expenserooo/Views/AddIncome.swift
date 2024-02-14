@@ -18,11 +18,24 @@ struct AddIncomeView: View {
     @State private var totalIncome: Double = 0.0 // State variable to hold the total income
     
     var body: some View {
-        VStack {
+        
+        
+        
+        VStack{
+            
             TextField("Total Income", value: $totalIncome, formatter: NumberFormatter())
                 .disabled(true)
                 .padding()
             
+        }
+        .onAppear {
+            totalIncome = calculateTotalIncome(incomes)
+        }
+        
+        
+        
+        
+        VStack {
             TextField("Income Name", text: $name)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
@@ -64,6 +77,10 @@ struct AddIncomeView: View {
             
             dataController.save(context: managedObjContext)
         }
+    }
+    
+    private func calculateTotalIncome(_ incomes: FetchedResults<Income>) -> Double {
+        return incomes.reduce(0) { $0 + ($1.amount ?? 0) }
     }
 
 }
