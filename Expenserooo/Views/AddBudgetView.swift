@@ -13,6 +13,7 @@ struct AddBudgetView: View {
     let categorySelection = ["Bills","Leisure", "Food", "Travel"]
     
     
+    @Binding var totalIncome: Double // Binding for total income
     
     @State private var expenses: [Expense] = []
     
@@ -81,6 +82,8 @@ struct AddBudgetView: View {
             }
             
             Button("Add Budget") {
+                guard let budgetAmount = Double(sourceamount) else { return }
+                               totalIncome -= budgetAmount 
                 DataController().addBudget(
                     name: name,
                     sourceamount: Double(sourceamount) ?? 0.0,

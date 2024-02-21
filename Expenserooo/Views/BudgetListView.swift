@@ -18,13 +18,21 @@ struct BudgetListView: View {
     @State private var showingAddView = false
     @State private var showAddIncomeView = false
     
+    @State private var totalIncome: Double = 0.0
     
-   
     
+  
     
     var body: some View {
         NavigationView {
+            
             List {
+                
+                VStack{
+                    Text("Total Income: \(formatAmount(totalIncome))")
+                    
+                }
+                
                 ForEach(budgets, id: \.id) { budget in
                     NavigationLink(destination: BudgetDetailView(budget: budget)) {
                         VStack(alignment: .leading) {
@@ -76,7 +84,7 @@ struct BudgetListView: View {
                 
             }
             .sheet(isPresented: $showingAddView) {
-                AddBudgetView()
+                AddBudgetView(totalIncome: $totalIncome)
             }
             
             .toolbar {
@@ -90,7 +98,7 @@ struct BudgetListView: View {
                 
             }
             .sheet(isPresented: $showAddIncomeView) {
-                AddIncomeView()
+                AddIncomeView(totalIncome: $totalIncome)
             }
             
             
