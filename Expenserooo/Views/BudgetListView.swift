@@ -19,7 +19,7 @@ struct BudgetListView: View {
     @State private var showAddIncomeView = false
     
     @State private var totalIncome: Double = 0.0
-    
+    @State private var totalSavings: Double = 0.0
     
   
     
@@ -98,7 +98,7 @@ struct BudgetListView: View {
                 
             }
             .sheet(isPresented: $showAddIncomeView) {
-                AddIncomeView(totalIncome: $totalIncome)
+                AddIncomeView(totalIncome: $totalIncome, totalSavings: $totalSavings)
             }
             
             
