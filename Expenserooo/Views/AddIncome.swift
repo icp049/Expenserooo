@@ -19,6 +19,14 @@ struct AddIncomeView: View {
     @Binding var totalIncome: Double // Binding for total income
 
     var body: some View {
+        
+        VStack{
+            RUButton(title: "Transfer to Savings", background:.black){
+                
+            }
+        }
+        
+        
         VStack {
             TextField("Income Name", text: $name)
                 .autocapitalization(.none)
