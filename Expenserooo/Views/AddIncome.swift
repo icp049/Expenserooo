@@ -15,15 +15,8 @@ struct AddIncomeView: View {
     @State private var name = ""
     @State private var amount = ""
     @State private var savingsAmount = ""
-    @Binding var totalIncome: Double // Binding for total income
-
-    // Option 1: Declare totalSavings as a binding
+    @Binding var totalIncome: Double
     @Binding var totalSavings: Double
-
-    // Option 2: Use a computed property for totalSavings
-//    private var totalSavings: Double {
-//        totalIncome - (Double(savingsAmount) ?? 0.0)
-//    }
 
     var body: some View {
         VStack {
@@ -32,37 +25,46 @@ struct AddIncomeView: View {
             VStack {
                 TextField("Transfer Amount", text: $savingsAmount)
                     .autocapitalization(.none)
-                    .autocorrectionDisabled()
+                    .disableAutocorrection(true)
 
                 Button("Transfer to Savings") {
                     transferToSavings()
                 }
-                
-                // Option 1: Display totalSavings using binding
+
                 Text("Total Savings: \(formatAmount(totalSavings))")
                     .foregroundColor(.green)
-
-                // Option 2: Display totalSavings using computed property
-//                Text("Total Savings: \(formatAmount(totalSavings))")
-//                    .foregroundColor(.green)
             }
 
             TextField("Income Name", text: $name)
                 .autocapitalization(.none)
-                .autocorrectionDisabled()
+                .disableAutocorrection(true)
 
             TextField("Income Amount", text: $amount)
                 .autocapitalization(.none)
-                .autocorrectionDisabled()
+                .disableAutocorrection(true)
 
             Button("Add Income") {
                 let incomeAmount = Double(amount) ?? 0.0
                 dataController.addIncome(name: name, amount: incomeAmount, context: managedObjContext)
-                totalIncome += incomeAmount // Update total income
+                totalIncome += incomeAmount
                 name = ""
                 amount = ""
             }
             .padding()
+
+            VStack {
+                List {
+                    ForEach(incomes, id: \.id) { income in
+                        VStack(alignment: .leading) {
+                            Text(income.name ?? "")
+                                .font(.headline)
+                            Text("Income: \(formatAmount(income.amount))")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .onDelete(perform: deleteIncome)
+                }
+            }
         }
         .padding()
     }
@@ -71,7 +73,7 @@ struct AddIncomeView: View {
         withAnimation {
             offsets.map { incomes[$0] }
                 .forEach { income in
-                    totalIncome -= income.amount // Deduct from total income
+                    totalIncome -= income.amount
                     managedObjContext.delete(income)
                 }
 
@@ -80,7 +82,6 @@ struct AddIncomeView: View {
     }
 
     private func transferToSavings() {
-        // Option 1: Access totalSavings as a binding
         guard let amount = Double(savingsAmount) else {
             return
         }
@@ -98,4 +99,7 @@ struct AddIncomeView: View {
 
         savingsAmount = ""
     }
+    
+   
 }
+
