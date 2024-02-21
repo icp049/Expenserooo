@@ -30,6 +30,7 @@ struct BudgetListView: View {
                 
                 VStack{
                     Text("Total Income: \(formatAmount(totalIncome))")
+                    Text("Total Savings: \(formatAmount(totalSavings))")
                     
                 }
                 
@@ -38,7 +39,7 @@ struct BudgetListView: View {
                         VStack(alignment: .leading) {
                             Text(budget.name ?? "")
                                 .font(.headline)
-                            Text("Income: \(formatAmount(budget.sourceamount))")
+                            Text("Budget: \(formatAmount(budget.sourceamount))")
                                 .foregroundColor(.secondary)
                             
                             // Display Expenses
@@ -84,7 +85,7 @@ struct BudgetListView: View {
                 
             }
             .sheet(isPresented: $showingAddView) {
-                AddBudgetView(totalIncome: $totalIncome)
+                AddBudgetView(totalIncome: $totalIncome, totalSavings: $totalSavings)
             }
             
             .toolbar {

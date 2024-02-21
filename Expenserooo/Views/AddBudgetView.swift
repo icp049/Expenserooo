@@ -8,12 +8,16 @@ struct AddBudgetView: View {
     @State private var sourceamount = ""
     @State private var expenseName = ""
     @State private var expenseCategory = ""
+    @State private var sourceCategory = ""
     @State private var expenseAmount = ""
     
     let categorySelection = ["Bills","Leisure", "Food", "Travel"]
     
+    let sourceSelection = ["Chequing", "Savings"]
     
-    @Binding var totalIncome: Double // Binding for total income
+    
+    @Binding var totalIncome: Double
+    @Binding var totalSavings: Double // Binding for total income// Binding for total income
     
     @State private var expenses: [Expense] = []
     
@@ -22,6 +26,18 @@ struct AddBudgetView: View {
             TextField("Budget Name", text: $name)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
+            
+            
+            
+            Picker("Budget Source", selection: $sourceCategory) {
+                ForEach(sourceSelection, id: \.self) { category in
+                    Text(category)
+                }
+            }
+            .pickerStyle(MenuPickerStyle())
+            
+            
+            
             
             TextField("Budget Amount", text: $sourceamount)
                 .autocapitalization(.none)
@@ -82,8 +98,14 @@ struct AddBudgetView: View {
             }
             
             Button("Add Budget") {
-                guard let budgetAmount = Double(sourceamount) else { return }
-                               totalIncome -= budgetAmount 
+                if sourceSelection.contains("Chequing") {
+                    // Your code here
+                    guard let budgetAmount = Double(sourceamount) else { return }
+                    totalIncome -= budgetAmount
+                } else {
+                    guard let budgetAmount = Double(sourceamount) else { return }
+                    totalSavings -= budgetAmount
+                }
                 DataController().addBudget(
                     name: name,
                     sourceamount: Double(sourceamount) ?? 0.0,
