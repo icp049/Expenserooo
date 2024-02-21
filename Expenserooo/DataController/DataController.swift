@@ -46,6 +46,19 @@ class DataController: ObservableObject{
     }
     
     
+    func addSavings(savingsname: String, savingsamount: Double, context:NSManagedObjectContext){
+        let savings = Savings(context: context)
+        savings.savingsid = UUID()
+        savings.savingsdate = Date()
+        savings.savingsname = savingsname
+        savings.savingsamount = savingsamount
+        
+        save(context: context)
+    }
+    
+ 
+    
+    
     
     func addBudget(name: String, sourceamount: Double, expenses: [Expense], context: NSManagedObjectContext) {
         let budget = Budget(context: context)

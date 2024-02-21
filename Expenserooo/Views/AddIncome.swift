@@ -11,10 +11,19 @@ struct AddIncomeView: View {
         animation: .default
     )
     var incomes: FetchedResults<Income>
+    
+    
+    @FetchRequest(
+        entity: Savings.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Savings.savingsdate, ascending: false)],
+        animation: .default
+    )
+    var savings: FetchedResults<Savings>
 
     @State private var name = ""
     @State private var amount = ""
-    @State private var savingsAmount = ""
+    @State private var savingsname = ""
+    @State private var savingsamount = ""
     @Binding var totalIncome: Double
     @Binding var totalSavings: Double
 
@@ -23,36 +32,64 @@ struct AddIncomeView: View {
             Text("Total Income: \(formatAmount(totalIncome))")
 
             VStack {
-                TextField("Transfer Amount", text: $savingsAmount)
+                
+                TextField("Transfer Name", text: $savingsname)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                TextField("Transfer Amount", text: $savingsamount)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
 
                 Button("Transfer to Savings") {
-                    transferToSavings()
+                    let savingsAmount = Double(savingsamount) ?? 0.0
+                    transferToSavings(amount: savingsAmount)
+                    dataController.addSavings(savingsname: savingsname, savingsamount: savingsAmount, context: managedObjContext)
+                    totalSavings += savingsAmount
+                    savingsname = ""
+                    savingsamount = ""
+                    
+                 
                 }
+                
 
                 Text("Total Savings: \(formatAmount(totalSavings))")
                     .foregroundColor(.green)
+                
+                List {
+                    ForEach(savings, id: \.id) { saving in
+                        VStack(alignment: .leading) {
+                            Text(saving.savingsname ?? "")
+                                .font(.headline)
+                            Text("Income: \(formatAmount(saving.savingsamount))")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .onDelete(perform: deleteSavings)
+                }
             }
 
-            TextField("Income Name", text: $name)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-
-            TextField("Income Amount", text: $amount)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-
-            Button("Add Income") {
-                let incomeAmount = Double(amount) ?? 0.0
-                dataController.addIncome(name: name, amount: incomeAmount, context: managedObjContext)
-                totalIncome += incomeAmount
-                name = ""
-                amount = ""
-            }
-            .padding()
+         
 
             VStack {
+                
+                TextField("Income Name", text: $name)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+
+                TextField("Income Amount", text: $amount)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+
+                Button("Add Income") {
+                    let incomeAmount = Double(amount) ?? 0.0
+                    dataController.addIncome(name: name, amount: incomeAmount, context: managedObjContext)
+                    totalIncome += incomeAmount
+                    name = ""
+                    amount = ""
+                    
+                 
+                }
+                .padding()
                 List {
                     ForEach(incomes, id: \.id) { income in
                         VStack(alignment: .leading) {
@@ -80,12 +117,21 @@ struct AddIncomeView: View {
             dataController.save(context: managedObjContext)
         }
     }
+    
+    
+    private func deleteSavings(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { savings[$0] }
+                .forEach { saving in
+                 
+                    managedObjContext.delete(saving)
+                }
 
-    private func transferToSavings() {
-        guard let amount = Double(savingsAmount) else {
-            return
+            dataController.save(context: managedObjContext)
         }
+    }
 
+    private func transferToSavings(amount: Double) {
         guard amount >= 0 else {
             return
         }
@@ -96,10 +142,8 @@ struct AddIncomeView: View {
 
         totalIncome -= amount
         totalSavings += amount
-
-        savingsAmount = ""
     }
     
-   
+
 }
 
