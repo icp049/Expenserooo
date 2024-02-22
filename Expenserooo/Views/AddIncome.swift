@@ -103,13 +103,31 @@ struct AddIncomeView: View {
             if let savedTotalIncome = defaults.value(forKey: "totalincome") as? Double {
                 totalIncome = savedTotalIncome
             }
-            print("Total Savings loaded from UserDefaults:", totalIncome)
+            print("Total Income loaded from UserDefaults:", totalIncome)
             // Calculate totalIncome from fetched results
             let calculatedTotalIncome = calculateTotalIncome(incomes)
             // Set totalIncome in UserDefaults
             defaults.set(calculatedTotalIncome, forKey: "totalincome")
             // Set totalIncome for the view
             totalIncome = calculatedTotalIncome
+            
+            
+            if let savedTotalSavings = defaults.value(forKey: "totalsavings") as? Double {
+                totalSavings = savedTotalSavings
+            }
+            print("Total Savings loaded from UserDefaults:", totalSavings)
+            // Calculate totalIncome from fetched results
+            let calculatedTotalSavings = calculateTotalSavings(savings)
+            // Set totalIncome in UserDefaults
+            defaults.set(calculatedTotalSavings, forKey: "totalsavings")
+            // Set totalIncome for the view
+            totalSavings = calculatedTotalSavings
+            
+            
+            
+            
+            
+            
         }
     }
 
@@ -140,6 +158,11 @@ struct AddIncomeView: View {
     
     private func calculateTotalIncome(_ income: FetchedResults<Income>) -> Double {
         return income.map { $0.amount }.reduce(0, +)
+    }
+    
+    
+    private func calculateTotalSavings(_ saving: FetchedResults<Savings>) -> Double {
+        return saving.map {$0.savingsamount}.reduce(0,+)
     }
 }
 

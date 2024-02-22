@@ -19,8 +19,8 @@ struct BudgetListView: View {
     @State private var showAddIncomeView = false
     
     @State private var totalIncome: Double = UserDefaults.standard.double(forKey: "totalincome")
-    @State private var totalSavings: Double = 0.0
-    
+    @State private var totalSavings: Double = UserDefaults.standard.double(forKey: "totalsavings")
+
    
     
     var body: some View {
