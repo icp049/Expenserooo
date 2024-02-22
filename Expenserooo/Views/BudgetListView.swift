@@ -18,10 +18,10 @@ struct BudgetListView: View {
     @State private var showingAddView = false
     @State private var showAddIncomeView = false
     
-    @State private var totalIncome: Double = 0.0
+    @State private var totalIncome: Double = UserDefaults.standard.double(forKey: "totalincome")
     @State private var totalSavings: Double = 0.0
     
-  
+   
     
     var body: some View {
         NavigationView {
@@ -33,6 +33,8 @@ struct BudgetListView: View {
                     Text("Total Savings: \(formatAmount(totalSavings))")
                     
                 }
+             
+                
                 
                 ForEach(budgets, id: \.id) { budget in
                     NavigationLink(destination: BudgetDetailView(budget: budget)) {

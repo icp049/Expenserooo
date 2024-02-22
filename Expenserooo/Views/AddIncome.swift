@@ -100,9 +100,10 @@ struct AddIncomeView: View {
         .padding()
         .onAppear {
             // Load totalSavings from UserDefaults when the view appears
-            if let savedTotalSavings = defaults.value(forKey: "totalsavings") as? Double {
-                totalSavings = savedTotalSavings
+            if let savedTotalIncome = defaults.value(forKey: "totalincome") as? Double {
+                totalIncome = savedTotalIncome
             }
+            print("Total Savings loaded from UserDefaults:", totalIncome)
             // Calculate totalIncome from fetched results
             let calculatedTotalIncome = calculateTotalIncome(incomes)
             // Set totalIncome in UserDefaults
