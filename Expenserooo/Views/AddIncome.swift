@@ -26,13 +26,14 @@ struct AddIncomeView: View {
     @State private var savingsamount = ""
     @Binding var totalIncome: Double
     @Binding var totalSavings: Double
+    
+    let defaults = UserDefaults.standard
 
     var body: some View {
         VStack {
             Text("Total Income: \(formatAmount(totalIncome))")
 
             VStack {
-                
                 TextField("Transfer Name", text: $savingsname)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
@@ -46,10 +47,8 @@ struct AddIncomeView: View {
                     totalSavings += savingsAmount
                     savingsname = ""
                     savingsamount = ""
-                    
-                 
+                    defaults.set(totalSavings, forKey: "totalsavings") // Update totalSavings in UserDefaults
                 }
-                
 
                 Text("Total Savings: \(formatAmount(totalSavings))")
                     .foregroundColor(.green)
@@ -67,10 +66,7 @@ struct AddIncomeView: View {
                 }
             }
 
-         
-
             VStack {
-                
                 TextField("Income Name", text: $name)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
@@ -85,8 +81,7 @@ struct AddIncomeView: View {
                     totalIncome += incomeAmount
                     name = ""
                     amount = ""
-                    
-                 
+                    defaults.set(totalSavings, forKey: "totalsavings") // Update totalSavings in UserDefaults
                 }
                 .padding()
                 List {
@@ -103,6 +98,12 @@ struct AddIncomeView: View {
             }
         }
         .padding()
+        .onAppear {
+            // Load totalSavings from UserDefaults when the view appears
+            if let savedTotalSavings = defaults.value(forKey: "totalsavings") as? Double {
+                totalSavings = savedTotalSavings
+            }
+        }
     }
 
     private func deleteIncome(offsets: IndexSet) {
@@ -129,21 +130,5 @@ struct AddIncomeView: View {
             dataController.save(context: managedObjContext)
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-
 }
 
