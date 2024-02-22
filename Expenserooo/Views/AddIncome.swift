@@ -42,7 +42,6 @@ struct AddIncomeView: View {
 
                 Button("Transfer to Savings") {
                     let savingsAmount = Double(savingsamount) ?? 0.0
-                    transferToSavings(amount: savingsAmount)
                     dataController.addSavings(savingsname: savingsname, savingsamount: savingsAmount, context: managedObjContext)
                     totalSavings += savingsAmount
                     savingsname = ""
@@ -123,26 +122,27 @@ struct AddIncomeView: View {
         withAnimation {
             offsets.map { savings[$0] }
                 .forEach { saving in
-                 
+                    totalSavings -= saving.savingsamount
                     managedObjContext.delete(saving)
                 }
 
             dataController.save(context: managedObjContext)
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    private func transferToSavings(amount: Double) {
-        guard amount >= 0 else {
-            return
-        }
-
-        guard totalIncome >= amount else {
-            return
-        }
-
-        totalIncome -= amount
-        totalSavings += amount
-    }
+    
     
 
 }
