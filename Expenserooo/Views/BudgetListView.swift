@@ -20,7 +20,7 @@ struct BudgetListView: View {
     
     @State private var totalIncome: Double = UserDefaults.standard.double(forKey: "totalincome")
     @State private var totalSavings: Double = UserDefaults.standard.double(forKey: "totalsavings")
-
+   
    
     
     var body: some View {
@@ -33,6 +33,7 @@ struct BudgetListView: View {
                     Text("Total Savings: \(formatAmount(totalSavings))")
                     
                 }
+                
              
                 
                 

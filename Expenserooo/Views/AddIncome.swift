@@ -40,8 +40,9 @@ struct AddIncomeView: View {
                 TextField("Transfer Amount", text: $savingsamount)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
-
+                
                 Button("Transfer to Savings") {
+                    transferToSavings()
                     let savingsAmount = Double(savingsamount) ?? 0.0
                     dataController.addSavings(savingsname: savingsname, savingsamount: savingsAmount, context: managedObjContext)
                     totalSavings += savingsAmount
@@ -49,6 +50,7 @@ struct AddIncomeView: View {
                     savingsamount = ""
                     defaults.set(totalSavings, forKey: "totalsavings") // Update totalSavings in UserDefaults
                 }
+
 
                 Text("Total Savings: \(formatAmount(totalSavings))")
                     .foregroundColor(.green)
@@ -99,29 +101,16 @@ struct AddIncomeView: View {
         }
         .padding()
         .onAppear {
-            // Load totalSavings from UserDefaults when the view appears
+       
             if let savedTotalIncome = defaults.value(forKey: "totalincome") as? Double {
-                totalIncome = savedTotalIncome
-            }
-            print("Total Income loaded from UserDefaults:", totalIncome)
-            // Calculate totalIncome from fetched results
-            let calculatedTotalIncome = calculateTotalIncome(incomes)
-            // Set totalIncome in UserDefaults
-            defaults.set(calculatedTotalIncome, forKey: "totalincome")
-            // Set totalIncome for the view
-            totalIncome = calculatedTotalIncome
+                    totalIncome = savedTotalIncome
+                }
+
+                // Load totalSavings from UserDefaults when the view appears
+                if let savedTotalSavings = defaults.value(forKey: "totalsavings") as? Double {
+                    totalSavings = savedTotalSavings
+                }
             
-            
-            if let savedTotalSavings = defaults.value(forKey: "totalsavings") as? Double {
-                totalSavings = savedTotalSavings
-            }
-            print("Total Savings loaded from UserDefaults:", totalSavings)
-            // Calculate totalIncome from fetched results
-            let calculatedTotalSavings = calculateTotalSavings(savings)
-            // Set totalIncome in UserDefaults
-            defaults.set(calculatedTotalSavings, forKey: "totalsavings")
-            // Set totalIncome for the view
-            totalSavings = calculatedTotalSavings
             
             
             
@@ -140,10 +129,11 @@ struct AddIncomeView: View {
                 }
 
             dataController.save(context: managedObjContext)
+            defaults.set(totalIncome, forKey: "totalincome") // Update totalIncome in UserDefaults after deletion
         }
     }
-    
-    
+
+
     private func deleteSavings(offsets: IndexSet) {
         withAnimation {
             offsets.map { savings[$0] }
@@ -153,16 +143,24 @@ struct AddIncomeView: View {
                 }
 
             dataController.save(context: managedObjContext)
+            defaults.set(totalSavings, forKey: "totalsavings") // Update totalSavings in UserDefaults after deletion
         }
     }
     
-    private func calculateTotalIncome(_ income: FetchedResults<Income>) -> Double {
-        return income.map { $0.amount }.reduce(0, +)
-    }
+   
     
-    
-    private func calculateTotalSavings(_ saving: FetchedResults<Savings>) -> Double {
-        return saving.map {$0.savingsamount}.reduce(0,+)
+    private func transferToSavings() {
+        guard let savingsAmount = Double(savingsamount) else { return }
+        guard var currentTotalIncome = defaults.value(forKey: "totalincome") as? Double else { return }
+
+        // Deduct the transferred amount from totalIncome
+        currentTotalIncome -= savingsAmount
+
+        // Update totalIncome in UserDefaults
+        defaults.set(currentTotalIncome, forKey: "totalincome")
+
+        // Update totalIncome for the view
+        totalIncome = currentTotalIncome
     }
 }
 
