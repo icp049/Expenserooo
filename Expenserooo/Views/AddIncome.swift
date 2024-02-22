@@ -81,7 +81,7 @@ struct AddIncomeView: View {
                     totalIncome += incomeAmount
                     name = ""
                     amount = ""
-                    defaults.set(totalSavings, forKey: "totalsavings") // Update totalSavings in UserDefaults
+                    defaults.set(totalIncome, forKey: "totalincome") // Update totalIncome in UserDefaults
                 }
                 .padding()
                 List {
@@ -103,6 +103,12 @@ struct AddIncomeView: View {
             if let savedTotalSavings = defaults.value(forKey: "totalsavings") as? Double {
                 totalSavings = savedTotalSavings
             }
+            // Calculate totalIncome from fetched results
+            let calculatedTotalIncome = calculateTotalIncome(incomes)
+            // Set totalIncome in UserDefaults
+            defaults.set(calculatedTotalIncome, forKey: "totalincome")
+            // Set totalIncome for the view
+            totalIncome = calculatedTotalIncome
         }
     }
 
@@ -129,6 +135,10 @@ struct AddIncomeView: View {
 
             dataController.save(context: managedObjContext)
         }
+    }
+    
+    private func calculateTotalIncome(_ income: FetchedResults<Income>) -> Double {
+        return income.map { $0.amount }.reduce(0, +)
     }
 }
 
