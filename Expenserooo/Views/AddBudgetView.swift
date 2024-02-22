@@ -97,15 +97,19 @@ struct AddBudgetView: View {
                 }
             }
             
-            Button("Add Budget") {
-                if sourceSelection.contains("Chequing") {
-                    // Your code here
-                    guard let budgetAmount = Double(sourceamount) else { return }
-                    totalIncome -= budgetAmount
-                } else {
-                    guard let budgetAmount = Double(sourceamount) else { return }
-                    totalSavings -= budgetAmount
-                }
+         
+                Button("Add Budget") {
+                    if sourceCategory == "Chequing" {
+                        guard let budgetAmount = Double(sourceamount) else { return }
+                        totalIncome -= budgetAmount
+                        UserDefaults.standard.set(totalIncome, forKey: "totalincome")
+                    } else if sourceCategory == "Savings" {
+                        guard let budgetAmount = Double(sourceamount) else { return }
+                        totalSavings -= budgetAmount
+                        UserDefaults.standard.set(totalSavings, forKey: "totalsavings")
+                    }
+                
+                
                 DataController().addBudget(
                     name: name,
                     sourceamount: Double(sourceamount) ?? 0.0,
