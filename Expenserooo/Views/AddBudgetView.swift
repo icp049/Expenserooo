@@ -8,7 +8,7 @@ struct AddBudgetView: View {
     @State private var sourceamount = ""
     @State private var expenseName = ""
     @State private var expenseCategory = ""
-    @State private var sourceCategory = "Chequing" //choice of saource budget defaults to chequing
+    @State private var sourcecategory = "Chequing" //choice of saource budget defaults to chequing
     @State private var expenseAmount = ""
     
     let categorySelection = ["Bills","Leisure", "Food", "Travel"]
@@ -30,7 +30,7 @@ struct AddBudgetView: View {
             
             
             
-            Picker("Budget Source", selection: $sourceCategory) {
+            Picker("Budget Source", selection: $sourcecategory) {
                 ForEach(sourceSelection, id: \.self) { category in
                     Text(category)
                 }
@@ -100,11 +100,11 @@ struct AddBudgetView: View {
             
          
                 Button("Add Budget") {
-                    if sourceCategory == "Chequing" {
+                    if sourcecategory == "Chequing" {
                         guard let budgetAmount = Double(sourceamount) else { return }
                         totalIncome -= budgetAmount
                         UserDefaults.standard.set(totalIncome, forKey: "totalincome")
-                    } else if sourceCategory == "Savings" {
+                    } else if sourcecategory == "Savings" {
                         guard let budgetAmount = Double(sourceamount) else { return }
                         totalSavings -= budgetAmount
                         UserDefaults.standard.set(totalSavings, forKey: "totalsavings")
@@ -113,6 +113,7 @@ struct AddBudgetView: View {
                 
                 DataController().addBudget(
                     name: name,
+                    sourcecategory: sourcecategory,
                     sourceamount: Double(sourceamount) ?? 0.0,
                     expenses: expenses,
                     context: managedObjContext)

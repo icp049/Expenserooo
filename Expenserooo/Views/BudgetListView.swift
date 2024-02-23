@@ -42,6 +42,10 @@ struct BudgetListView: View {
                         VStack(alignment: .leading) {
                             Text(budget.name ?? "")
                                 .font(.headline)
+                            
+                            Text("Sourced From: \(budget.sourcecategory ?? ""))")
+                                .foregroundColor(.secondary)
+                            
                             Text("Budget: \(formatAmount(budget.sourceamount))")
                                 .foregroundColor(.secondary)
                             
