@@ -132,6 +132,7 @@ struct BudgetListView: View {
         return expenses.allObjects.compactMap { ($0 as? Expense)?.amount }.reduce(0, +)
     }
     
+   
     
 }
 

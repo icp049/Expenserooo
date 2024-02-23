@@ -8,12 +8,13 @@ struct AddBudgetView: View {
     @State private var sourceamount = ""
     @State private var expenseName = ""
     @State private var expenseCategory = ""
-    @State private var sourceCategory = ""
+    @State private var sourceCategory = "Chequing" //choice of saource budget defaults to chequing
     @State private var expenseAmount = ""
     
     let categorySelection = ["Bills","Leisure", "Food", "Travel"]
     
     let sourceSelection = ["Chequing", "Savings"]
+    
     
     
     @Binding var totalIncome: Double
