@@ -3,12 +3,24 @@ import SwiftUI
 
 struct BudgetDetailView: View {
     let budget: Budget
+    
+    @Binding var totalIncome: Double
+    @Binding var totalSavings: Double
 
+    
+    @Environment(\.managedObjectContext) var managedObjContext
+    @EnvironmentObject var dataController: DataController // Access DataController as an environment object
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(budget.name ?? "")
                 .font(.headline)
-            Text("Income: \(formatAmount(budget.sourceamount))")
+            
+            
+            Text(budget.sourcecategory ?? "")
+             
+            
+            Text("Amount Alloted: \(formatAmount(budget.sourceamount))")
                 .foregroundColor(.secondary)
 
             if let expenses = budget.expenses {
@@ -35,6 +47,15 @@ struct BudgetDetailView: View {
                                            .frame(height: 200)
                                            .padding()                }
             }
+            
+            
+            RUButton(title: "Forfeit", background: .red){
+                forfeitBudget(budget: budget)
+                
+            }
+            
+            
+            
         }
         .padding()
         .navigationTitle("Budget Details")
@@ -77,5 +98,22 @@ struct BudgetDetailView: View {
             return .gray
         }
     }
+    
+    
+    private func forfeitBudget(budget: Budget) {
+        if let sourceCategory = budget.sourcecategory {
+            if sourceCategory == "Chequing" {
+                totalIncome += budget.sourceamount
+                UserDefaults.standard.set(totalIncome, forKey: "totalincome")
+            } else if sourceCategory == "Savings" {
+                totalSavings += budget.sourceamount
+                UserDefaults.standard.set(totalSavings, forKey: "totalsavings")
+            }
+
+            budget.sourceamount = 0
+            DataController().save(context: managedObjContext)
+        }
+    }
+
 }
 

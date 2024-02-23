@@ -38,7 +38,7 @@ struct BudgetListView: View {
                 
                 
                 ForEach(budgets, id: \.id) { budget in
-                    NavigationLink(destination: BudgetDetailView(budget: budget)) {
+                    NavigationLink(destination: BudgetDetailView(budget: budget, totalIncome: $totalIncome, totalSavings: $totalSavings)) {
                         VStack(alignment: .leading) {
                             Text(budget.name ?? "")
                                 .font(.headline)
