@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreData
 
 struct AddIncomeView: View {
     @Environment(\.managedObjectContext) var managedObjContext
@@ -34,6 +35,38 @@ struct AddIncomeView: View {
             Text("Total Income: \(formatAmount(totalIncome))")
 
             VStack {
+                TextField("Income Name", text: $name)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+
+                TextField("Income Amount", text: $amount)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+
+                Button("Add Income") {
+                    let incomeAmount = Double(amount) ?? 0.0
+                    dataController.addIncome(name: name, amount: incomeAmount, context: managedObjContext)
+                    totalIncome += incomeAmount
+                    name = ""
+                    amount = ""
+                    defaults.set(totalIncome, forKey: "totalincome") // Update totalIncome in UserDefaults
+                }
+                .padding()
+                List {
+                    ForEach(incomes, id: \.id) { income in
+                        VStack(alignment: .leading) {
+                            Text(income.name ?? "")
+                                .font(.headline)
+                            Text("Income: \(formatAmount(income.amount))")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    
+                }
+            }
+            
+            
+            VStack{
                 TextField("Transfer Name", text: $savingsname)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
@@ -67,37 +100,6 @@ struct AddIncomeView: View {
                   
                 }
             }
-
-            VStack {
-                TextField("Income Name", text: $name)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-
-                TextField("Income Amount", text: $amount)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-
-                Button("Add Income") {
-                    let incomeAmount = Double(amount) ?? 0.0
-                    dataController.addIncome(name: name, amount: incomeAmount, context: managedObjContext)
-                    totalIncome += incomeAmount
-                    name = ""
-                    amount = ""
-                    defaults.set(totalIncome, forKey: "totalincome") // Update totalIncome in UserDefaults
-                }
-                .padding()
-                List {
-                    ForEach(incomes, id: \.id) { income in
-                        VStack(alignment: .leading) {
-                            Text(income.name ?? "")
-                                .font(.headline)
-                            Text("Income: \(formatAmount(income.amount))")
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    
-                }
-            }
         }
         .padding()
         .onAppear {
@@ -110,11 +112,6 @@ struct AddIncomeView: View {
                 if let savedTotalSavings = defaults.value(forKey: "totalsavings") as? Double {
                     totalSavings = savedTotalSavings
                 }
-            
-            
-            
-            
-            
             
             
         }
