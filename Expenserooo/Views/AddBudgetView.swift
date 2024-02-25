@@ -24,9 +24,7 @@ struct AddBudgetView: View {
     
     var body: some View {
         VStack {
-            TextField("Budget Name", text: $name)
-                .autocapitalization(.none)
-                .autocorrectionDisabled()
+         
             
             
             
@@ -35,7 +33,11 @@ struct AddBudgetView: View {
                     Text(category)
                 }
             }
-            .pickerStyle(MenuPickerStyle())
+            .pickerStyle(.wheel)
+            
+            TextField("Budget Name", text: $name)
+                .autocapitalization(.none)
+                .autocorrectionDisabled()
             
             
             
