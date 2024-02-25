@@ -64,7 +64,7 @@ struct AddIncomeView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
-                    .onDelete(perform: deleteSavings)
+                  
                 }
             }
 
@@ -95,7 +95,7 @@ struct AddIncomeView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
-                    .onDelete(perform: deleteIncome)
+                    
                 }
             }
         }
