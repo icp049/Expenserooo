@@ -97,7 +97,7 @@ struct AddIncomeView: View {
                         VStack(alignment: .leading) {
                             Text(saving.savingsname ?? "")
                                 .font(.headline)
-                            Text("Income: \(formatAmount(saving.savingsamount))")
+                            Text(formatAmount(saving.savingsamount))
                                 .foregroundColor(.secondary)
                         }
                     }
