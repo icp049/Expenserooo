@@ -43,7 +43,7 @@ struct AddIncomeView: View {
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
 
-                Button("Add Income") {
+                RUButton(title: "Add Income", background: .blue){
                     let incomeAmount = Double(amount) ?? 0.0
                     dataController.addIncome(name: name, amount: incomeAmount, context: managedObjContext)
                     totalIncome += incomeAmount
@@ -67,6 +67,10 @@ struct AddIncomeView: View {
             
             
             VStack{
+                
+                Text("Transfer to Savings")
+                
+                
                 TextField("Transfer Name", text: $savingsname)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
@@ -74,7 +78,7 @@ struct AddIncomeView: View {
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
                 
-                Button("Transfer to Savings") {
+                RUButton(title: "Transfer" , background: .green){
                     transferToSavings()
                     let savingsAmount = Double(savingsamount) ?? 0.0
                     dataController.addSavings(savingsname: savingsname, savingsamount: savingsAmount, context: managedObjContext)
