@@ -60,7 +60,7 @@ class DataController: ObservableObject{
     
     
     
-    func addBudget(name: String, sourcecategory: String, sourceamount: Double, expenses: [Expense], totalexpense: Double, context: NSManagedObjectContext) {
+    func addBudget(name: String, sourcecategory: String, sourceamount: Double, expenses: [Expense], totalexpense: Double, extramoney: Double, context: NSManagedObjectContext) {
         let budget = Budget(context: context)
         budget.id = UUID()
         budget.date = Date()
@@ -68,6 +68,7 @@ class DataController: ObservableObject{
         budget.sourceamount = sourceamount
         budget.sourcecategory = sourcecategory
         budget.totalexpense = totalexpense
+        budget.extramoney = extramoney
       
         
         for expense in expenses {

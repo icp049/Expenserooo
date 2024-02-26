@@ -11,6 +11,7 @@ struct AddBudgetView: View {
     @State private var sourcecategory = "Chequing" //choice of saource budget defaults to chequing
     @State private var expenseAmount = ""
     @State private var totalexpense = ""
+    @State private var extramoney = ""
     
     
     let categorySelection = ["Bills","Leisure", "Food", "Travel"]
@@ -108,6 +109,10 @@ struct AddBudgetView: View {
                 Button("Add Budget") {
                     
                     let totalExpense = calculateTotalExpense(expenses)
+                    let sourceAmountDouble = Double(sourceamount) ?? 0.0
+                        let extraMoney = sourceAmountDouble - totalExpense
+                    
+                    
 
                     
                     if sourcecategory == "Chequing" {
@@ -130,6 +135,7 @@ struct AddBudgetView: View {
                     sourceamount: Double(sourceamount) ?? 0.0,
                     expenses: expenses,
                     totalexpense: totalExpense,
+                    extramoney: extraMoney,
                     context: managedObjContext)
                 dismiss()
             }

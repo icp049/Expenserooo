@@ -70,7 +70,7 @@ struct BudgetListView: View {
                                     
                                     
                                     Text("Extra Money:")
-                                    Text("\(formatAmount(budget.sourceamount - budget.totalexpense))")
+                                    Text("\(formatAmount(budget.extramoney))")
                                     
                                     
                                 }
