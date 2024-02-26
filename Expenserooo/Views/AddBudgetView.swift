@@ -10,6 +10,8 @@ struct AddBudgetView: View {
     @State private var expenseCategory = ""
     @State private var sourcecategory = "Chequing" //choice of saource budget defaults to chequing
     @State private var expenseAmount = ""
+    @State private var totalexpense = ""
+    
     
     let categorySelection = ["Bills","Leisure", "Food", "Travel"]
     
@@ -75,6 +77,8 @@ struct AddBudgetView: View {
                 expenseName = ""
                 expenseCategory = ""
                 expenseAmount = ""
+                
+                
             }
             
             Section(header: Text("Expenses")) {
@@ -102,6 +106,10 @@ struct AddBudgetView: View {
             
          
                 Button("Add Budget") {
+                    
+                    let totalExpense = calculateTotalExpense(expenses)
+
+                    
                     if sourcecategory == "Chequing" {
                         guard let budgetAmount = Double(sourceamount) else { return }
                         totalIncome -= budgetAmount
@@ -111,6 +119,9 @@ struct AddBudgetView: View {
                         totalSavings -= budgetAmount
                         UserDefaults.standard.set(totalSavings, forKey: "totalsavings")
                     }
+                    
+                    
+                    
                 
                 
                 DataController().addBudget(
@@ -118,6 +129,7 @@ struct AddBudgetView: View {
                     sourcecategory: sourcecategory,
                     sourceamount: Double(sourceamount) ?? 0.0,
                     expenses: expenses,
+                    totalexpense: totalExpense,
                     context: managedObjContext)
                 dismiss()
             }
@@ -125,3 +137,10 @@ struct AddBudgetView: View {
         }
     }
 }
+
+
+
+private func calculateTotalExpense(_ expenses: [Expense]) -> Double {
+    return expenses.map { $0.amount }.reduce(0, +)
+}
+

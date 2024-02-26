@@ -65,12 +65,12 @@ struct BudgetListView: View {
                                     
                                     // Display the total expense using the new function
                                     Text("Total Expense:")
-                                    Text("\(formatAmount(calculateTotalExpense(expenses)))")
+                                    Text("\(formatAmount(budget.totalexpense))")
                                     
                                     
                                     
                                     Text("Extra Money:")
-                                    Text("\(formatAmount(budget.sourceamount - calculateTotalExpense(expenses)))")
+                                    Text("\(formatAmount(budget.sourceamount - budget.totalexpense))")
                                     
                                     
                                 }
@@ -131,10 +131,7 @@ struct BudgetListView: View {
         }
     }
     
-    // Helper function to calculate total expense
-    private func calculateTotalExpense(_ expenses: NSSet) -> Double {
-        return expenses.allObjects.compactMap { ($0 as? Expense)?.amount }.reduce(0, +)
-    }
+  
     
    
     
