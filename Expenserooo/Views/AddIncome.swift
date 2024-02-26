@@ -27,83 +27,98 @@ struct AddIncomeView: View {
     @State private var savingsamount = ""
     @Binding var totalIncome: Double
     @Binding var totalSavings: Double
+    @State private var selectedSegment = 0;
     
     let defaults = UserDefaults.standard
 
     var body: some View {
+        
+        
         VStack {
             Text("Total Income: \(formatAmount(totalIncome))")
+        Picker("", selection: $selectedSegment) {
+                                Text("Income").tag(0)
+                               Text("Savings").tag(1)
+                                
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                            .padding(.top, 10)
+                            
+                            if selectedSegment == 0 {
+                                VStack {
+                                    TextField("Income Name", text: $name)
+                                        .autocapitalization(.none)
+                                        .disableAutocorrection(true)
 
-            VStack {
-                TextField("Income Name", text: $name)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
+                                    TextField("Income Amount", text: $amount)
+                                        .autocapitalization(.none)
+                                        .disableAutocorrection(true)
 
-                TextField("Income Amount", text: $amount)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
+                                    RUButton(title: "Add Income", background: .blue){
+                                        let incomeAmount = Double(amount) ?? 0.0
+                                        dataController.addIncome(name: name, amount: incomeAmount, context: managedObjContext)
+                                        totalIncome += incomeAmount
+                                        name = ""
+                                        amount = ""
+                                        defaults.set(totalIncome, forKey: "totalincome") // Update totalIncome in UserDefaults
+                                    }
+                                    .padding()
+                                    List {
+                                        ForEach(incomes, id: \.id) { income in
+                                            VStack(alignment: .leading) {
+                                                Text(income.name ?? "")
+                                                    .font(.headline)
+                                                Text(formatAmount(income.amount))
+                                                    .foregroundColor(.secondary)
+                                            }
+                                        }
+                                        
+                                    }
+                                }                            }
+                           else if selectedSegment == 1{
+                               VStack{
+                                   
+                                   Text("Transfer to Savings")
+                                   
+                                   
+                                   TextField("Transfer Name", text: $savingsname)
+                                       .autocapitalization(.none)
+                                       .disableAutocorrection(true)
+                                   TextField("Transfer Amount", text: $savingsamount)
+                                       .autocapitalization(.none)
+                                       .disableAutocorrection(true)
+                                   
+                                   RUButton(title: "Transfer" , background: .green){
+                                       transferToSavings()
+                                       let savingsAmount = Double(savingsamount) ?? 0.0
+                                       dataController.addSavings(savingsname: savingsname, savingsamount: savingsAmount, context: managedObjContext)
+                                       totalSavings += savingsAmount
+                                       savingsname = ""
+                                       savingsamount = ""
+                                       defaults.set(totalSavings, forKey: "totalsavings") // Update totalSavings in UserDefaults
+                                   }
 
-                RUButton(title: "Add Income", background: .blue){
-                    let incomeAmount = Double(amount) ?? 0.0
-                    dataController.addIncome(name: name, amount: incomeAmount, context: managedObjContext)
-                    totalIncome += incomeAmount
-                    name = ""
-                    amount = ""
-                    defaults.set(totalIncome, forKey: "totalincome") // Update totalIncome in UserDefaults
-                }
-                .padding()
-                List {
-                    ForEach(incomes, id: \.id) { income in
-                        VStack(alignment: .leading) {
-                            Text(income.name ?? "")
-                                .font(.headline)
-                            Text(formatAmount(income.amount))
-                                .foregroundColor(.secondary)
-                        }
-                    }
+
+                                   Text("Total Savings: \(formatAmount(totalSavings))")
+                                       .foregroundColor(.green)
+                                   
+                                   List {
+                                       ForEach(savings, id: \.id) { saving in
+                                           VStack(alignment: .leading) {
+                                               Text(saving.savingsname ?? "")
+                                                   .font(.headline)
+                                               Text(formatAmount(saving.savingsamount))
+                                                   .foregroundColor(.secondary)
+                                           }
+                                       }
+                                     
+                                   }
+                               }                            }
+                           else{
+                               Text("Loading Profile...")
+                            }
                     
-                }
-            }
-            
-            
-            VStack{
-                
-                Text("Transfer to Savings")
-                
-                
-                TextField("Transfer Name", text: $savingsname)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                TextField("Transfer Amount", text: $savingsamount)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                
-                RUButton(title: "Transfer" , background: .green){
-                    transferToSavings()
-                    let savingsAmount = Double(savingsamount) ?? 0.0
-                    dataController.addSavings(savingsname: savingsname, savingsamount: savingsAmount, context: managedObjContext)
-                    totalSavings += savingsAmount
-                    savingsname = ""
-                    savingsamount = ""
-                    defaults.set(totalSavings, forKey: "totalsavings") // Update totalSavings in UserDefaults
-                }
-
-
-                Text("Total Savings: \(formatAmount(totalSavings))")
-                    .foregroundColor(.green)
-                
-                List {
-                    ForEach(savings, id: \.id) { saving in
-                        VStack(alignment: .leading) {
-                            Text(saving.savingsname ?? "")
-                                .font(.headline)
-                            Text(formatAmount(saving.savingsamount))
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                  
-                }
-            }
+    
         }
         .padding()
         .onAppear {
