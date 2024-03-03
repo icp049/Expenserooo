@@ -42,10 +42,10 @@ struct BudgetDetailView: View {
                         }
 
                         Text("Total Expense:")
-                        Text("\(formatAmount(calculateTotalExpense(expenses)))")
+                        Text("\(formatAmount(budget.totalexpense))")
 
                         Text("Extra Money:")
-                        Text("\(formatAmount(budget.sourceamount - calculateTotalExpense(expenses)))")
+                        Text("\(formatAmount(budget.extramoney))")
 
                         HStack{  // Integrate Pie Chart here
                             PieChartView(slices: prepareChartData(expenses: expenses))
@@ -112,6 +112,9 @@ struct BudgetDetailView: View {
                 }
 
                 budget.sourceamount = 0
+                budget.extramoney = 0
+                budget.totalexpense = 0
+                
                 do {
                     try managedObjContext.save()
                 } catch {
