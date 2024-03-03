@@ -1,6 +1,6 @@
 import SwiftUI
 import CoreData
-
+//
 struct AddIncomeView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @Environment(\.dismiss) var dismiss
