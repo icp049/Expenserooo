@@ -31,6 +31,9 @@ struct BudgetListView: View {
                 VStack{
                     Text("Total Income: \(formatAmount(totalIncome))")
                     Text("Total Savings: \(formatAmount(totalSavings))")
+                    Text("Total Expenses: \(formatAmount(calculateTotalExpense()))")
+                    Text("Total Extra: \(formatAmount(calculateExtraMoney()))")
+                    
                     
                 }
                 
@@ -130,6 +133,15 @@ struct BudgetListView: View {
             DataController().save(context: managedObjContext)
         }
     }
+    
+    
+    private func calculateTotalExpense() -> Double {
+          return budgets.map { $0.totalexpense }.reduce(0, +)
+      }
+      
+      private func calculateExtraMoney() -> Double {
+          return budgets.map { $0.extramoney }.reduce(0, +)
+      }
     
   
     
