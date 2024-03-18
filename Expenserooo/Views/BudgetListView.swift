@@ -26,6 +26,7 @@ struct BudgetListView: View {
     var body: some View {
         NavigationView {
             
+
             List {
                 
                 VStack{
@@ -121,6 +122,10 @@ struct BudgetListView: View {
         }
         .navigationViewStyle(.stack)
     }
+    
+    
+    
+    
     
     
     

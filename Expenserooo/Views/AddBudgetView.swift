@@ -136,41 +136,46 @@ struct AddBudgetView: View {
         }
             .padding(.top,50)
             
-         
-                Button("Add Budget") {
-                    
-                    let totalExpense = calculateTotalExpense(expenses)
-                    let sourceAmountDouble = Double(sourceamount) ?? 0.0
-                        let extraMoney = sourceAmountDouble - totalExpense
-                    
-                    
+            
+            
+            
+            
+            RUButton(title: "Add Budget", background:.green){
+                
+                
+                let totalExpense = calculateTotalExpense(expenses)
+                let sourceAmountDouble = Double(sourceamount) ?? 0.0
+                    let extraMoney = sourceAmountDouble - totalExpense
+                
+                
 
-                    
-                    if sourcecategory == "Chequing" {
-                        guard let budgetAmount = Double(sourceamount) else { return }
-                        totalIncome -= budgetAmount
-                        UserDefaults.standard.set(totalIncome, forKey: "totalincome")
-                    } else if sourcecategory == "Savings" {
-                        guard let budgetAmount = Double(sourceamount) else { return }
-                        totalSavings -= budgetAmount
-                        UserDefaults.standard.set(totalSavings, forKey: "totalsavings")
-                    }
-                    
-                    
-                    
+                
+                if sourcecategory == "Chequing" {
+                    guard let budgetAmount = Double(sourceamount) else { return }
+                    totalIncome -= budgetAmount
+                    UserDefaults.standard.set(totalIncome, forKey: "totalincome")
+                } else if sourcecategory == "Savings" {
+                    guard let budgetAmount = Double(sourceamount) else { return }
+                    totalSavings -= budgetAmount
+                    UserDefaults.standard.set(totalSavings, forKey: "totalsavings")
+                }
                 
                 
-                DataController().addBudget(
-                    name: name,
-                    sourcecategory: sourcecategory,
-                    sourceamount: Double(sourceamount) ?? 0.0,
-                    expenses: expenses,
-                    totalexpense: totalExpense,
-                    extramoney: extraMoney,
-                    context: managedObjContext)
-                dismiss()
+                
+            
+            
+            DataController().addBudget(
+                name: name,
+                sourcecategory: sourcecategory,
+                sourceamount: Double(sourceamount) ?? 0.0,
+                expenses: expenses,
+                totalexpense: totalExpense,
+                extramoney: extraMoney,
+                context: managedObjContext)
+            dismiss()
+                
             }
-            .padding()
+            .padding(.top,40)
         }
     }
 }
