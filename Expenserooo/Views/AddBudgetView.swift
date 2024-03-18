@@ -15,7 +15,6 @@ struct AddBudgetView: View {
     
     
     let categorySelection = ["Bills","Leisure", "Food", "Travel"]
-    
     let sourceSelection = ["Chequing", "Savings"]
     
     
@@ -27,20 +26,28 @@ struct AddBudgetView: View {
     
     var body: some View {
         VStack {
-         
             
             
-            
-            Picker("Budget Source", selection: $sourcecategory) {
-                ForEach(sourceSelection, id: \.self) { category in
-                    Text(category)
+            VStack{
+                HStack{
+                    
+                    Text("Get it from")
+                    
+                    
+                    Picker("Source", selection: $sourcecategory) {
+                        ForEach(sourceSelection, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    .pickerStyle(.segmented)
                 }
+                
             }
-            .pickerStyle(.wheel)
             
             TextField("Budget Name", text: $name)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
+            
             
             
             
@@ -50,37 +57,57 @@ struct AddBudgetView: View {
                 .autocorrectionDisabled()
             
             
-           
             
-            TextField("Expense Name", text: $expenseName)
-                .autocapitalization(.none)
-                .autocorrectionDisabled()
             
-            Picker("Expense Category", selection: $expenseCategory) {
-                ForEach(categorySelection, id: \.self) { category in
-                    Text(category)
+            
+            VStack{
+                
+                Text("E X P E N S E S")
+                
+                
+                TextField("Expense Name", text: $expenseName)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                
+                
+                
+                TextField("Expense Amount", text: $expenseAmount)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                
+                
+                HStack {
+                    
+                    Text("Category")
+                    
+                    Picker("Expense Category", selection: $expenseCategory) {
+                        ForEach(categorySelection, id: \.self) { category in
+                            Text(category)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    
                 }
-            }
-            .pickerStyle(MenuPickerStyle())
             
-            TextField("Expense Amount", text: $expenseAmount)
-                .autocapitalization(.none)
-                .autocorrectionDisabled()
-            
-            Button("Add Expense") {
-                let newExpense = Expense(context: managedObjContext)
-                newExpense.name = expenseName
-                newExpense.category = expenseCategory
-                newExpense.amount = Double(expenseAmount) ?? 0.0
+        
+        
                 
-                expenses.append(newExpense)
-                // Optionally clear the text fields after adding an expense
-                expenseName = ""
-                expenseCategory = ""
-                expenseAmount = ""
+                RUButton(title: "Add Expense" , background: .red){
+                    
+                    let newExpense = Expense(context: managedObjContext)
+                    newExpense.name = expenseName
+                    newExpense.category = expenseCategory
+                    newExpense.amount = Double(expenseAmount) ?? 0.0
+                    
+                    expenses.append(newExpense)
+                    // Optionally clear the text fields after adding an expense
+                    expenseName = ""
+                    expenseCategory = ""
+                    expenseAmount = ""
+                    
+                }
                 
-                
-            }
+               
             
             Section(header: Text("Expenses")) {
                 ForEach(expenses, id: \.self) { expense in
@@ -104,6 +131,10 @@ struct AddBudgetView: View {
                     
                 }
             }
+            .padding(.top,30)
+            
+        }
+            .padding(.top,50)
             
          
                 Button("Add Budget") {
@@ -143,6 +174,7 @@ struct AddBudgetView: View {
         }
     }
 }
+
 
 
 
