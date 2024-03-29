@@ -102,23 +102,30 @@ struct AddBudgetView: View {
                 }
                 
                 
-                
-                
-                RUButton(title: "Add Expense" , background: .red){
+                HStack{
                     
-                    let newExpense = Expense(context: managedObjContext)
-                    newExpense.name = expenseName
-                    newExpense.category = expenseCategory
-                    newExpense.amount = Double(expenseAmount) ?? 0.0
                     
-                    expenses.append(newExpense)
-                    // Optionally clear the text fields after adding an expense
-                    expenseName = ""
-                    expenseCategory = ""
-                    expenseAmount = ""
+                    Spacer()
+                    
+                    RUButton(title: "Add + " , background: .blue){
+                        
+                        let newExpense = Expense(context: managedObjContext)
+                        newExpense.name = expenseName
+                        newExpense.category = expenseCategory
+                        newExpense.amount = Double(expenseAmount) ?? 0.0
+                        
+                        expenses.append(newExpense)
+                        // Optionally clear the text fields after adding an expense
+                        expenseName = ""
+                        expenseCategory = ""
+                        expenseAmount = ""
+                        
+                    }
+                    
+                 
                     
                 }
-                
+                .padding(.top,15)
                 
                 
                 Section{
