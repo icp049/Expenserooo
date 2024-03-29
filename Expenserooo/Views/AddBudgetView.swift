@@ -14,7 +14,7 @@ struct AddBudgetView: View {
     @State private var extramoney = ""
     
     
-    let categorySelection = ["Rent/Mortgage","Loan", "Food", "Travel", "Subscription", "My Wants","Essentials", "Transportation/Gas"]
+    let categorySelection = ["🏡 Rent/Mortgage", "💸 Bills" ,"🏛 Loan", "🍽 Food", "✈️ Travel", "📱 Subscription", "😄 My Wants","👉 Essentials", "🚘 Transportation/Gas"]
     let sourceSelection = ["Chequing", "Savings"]
     
     
@@ -89,13 +89,18 @@ struct AddBudgetView: View {
                 HStack {
                     
                     Text("Category")
+                        .foregroundStyle(.secondary)
                     
                     Picker("Expense Category", selection: $expenseCategory) {
                         ForEach(categorySelection, id: \.self) { category in
                             Text(category)
+                            
+                            
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
+                    .accentColor(.white)
+                    
                     
                     Spacer()
                     
@@ -128,16 +133,19 @@ struct AddBudgetView: View {
                 .padding(.top,15)
                 
                 
-                Section{
+                Section {
                     ForEach(expenses, id: \.self) { expense in
                         HStack {
                             Text("\(expense.name ?? "")")
+                                .frame(width: 150, alignment: .leading) // Adjust the width as needed
                             Spacer()
                             Text("\(expense.category ?? "")")
+                                .frame(width: 100, alignment: .leading) // Adjust the width as needed
                             Spacer()
                             Text("\(expense.amount)")
+                                .frame(width: 60, alignment: .leading) // Adjust the width as needed
                             Spacer()
-                            
+
                             Button(action: {
                                 if let index = expenses.firstIndex(of: expense) {
                                     expenses.remove(at: index)
@@ -147,10 +155,11 @@ struct AddBudgetView: View {
                                     .foregroundColor(.red)
                             }
                         }
-                        
+                        .padding(.horizontal)
                     }
                 }
-                .padding(.top,30)
+                .padding(.top, 30)
+
                 
             }
             .padding(.top,50)
