@@ -25,7 +25,6 @@ struct BudgetListView: View {
     
     var body: some View {
         NavigationView {
-            
             List {
                 
                 VStack{
@@ -37,7 +36,7 @@ struct BudgetListView: View {
                     
                 }
                 
-             
+                
                 
                 
                 ForEach(budgets, id: \.id) { budget in
@@ -83,7 +82,12 @@ struct BudgetListView: View {
                     }
                 }
                 .onDelete(perform: deleteBudget)
+                
             }
+            
+            
+            
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -114,7 +118,7 @@ struct BudgetListView: View {
             
             
             
-            
+               
             
             
             

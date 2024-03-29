@@ -14,7 +14,7 @@ struct AddBudgetView: View {
     @State private var extramoney = ""
     
     
-    let categorySelection = ["Bills","Leisure", "Food", "Travel"]
+    let categorySelection = ["Rent/Mortgage","Loan", "Food", "Travel", "Subscription", "My Wants","Essentials", "Transportation/Gas"]
     let sourceSelection = ["Chequing", "Savings"]
     
     
@@ -29,8 +29,9 @@ struct AddBudgetView: View {
         
         
         
-        Text("BUDGETING")
+        Text("B U D G E T I N G")
             .font(.system(size:25))
+            .padding(.top,20)
         
         
         VStack {
@@ -71,6 +72,7 @@ struct AddBudgetView: View {
             VStack{
                 
                 Text("M Y  E X P E N S E S")
+                  
                 
                 
                 TextField("Expense Name", text: $expenseName)
@@ -94,6 +96,8 @@ struct AddBudgetView: View {
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
+                    
+                    Spacer()
                     
                 }
                 
