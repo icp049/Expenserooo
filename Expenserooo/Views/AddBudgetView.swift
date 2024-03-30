@@ -138,20 +138,15 @@ struct AddBudgetView: View {
                     List{
                         ForEach(expenses, id: \.self) { expense in
                             HStack {
-                                Spacer()
-                                Text("\(expense.name ?? "")")
-                                // Adjust the width as needed
-                                Spacer()
-                                Text("\(expense.category ?? "")")
-                                // Adjust the width as needed
-                                Spacer()
-                                Text("\(formatAmount(expense.amount))")
-                                // Adjust the width as needed
-                                Spacer()
-                                
-                            }
-                            
-                            
+                                    Text("\(expense.name ?? "")")
+                                        .frame(maxWidth: 160 ,alignment: .leading) // Adjust alignment as needed
+                                    Spacer()
+                                    Text("\(expense.category ?? "")")
+                                        .frame(maxWidth: 190 ,alignment: .center) // Adjust alignment as needed
+                                    Spacer()
+                                    Text("\(formatAmount(expense.amount))")
+                                        .frame(maxWidth: 50, alignment: .trailing) // Adjust alignment as needed
+                                }
                             
                         }
                         .onDelete { indexSet in
@@ -161,7 +156,7 @@ struct AddBudgetView: View {
                     }
                     
                 }
-            
+                .frame(width: 450)
                 .padding(.top, 20)
 
                 
