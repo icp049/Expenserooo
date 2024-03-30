@@ -134,35 +134,38 @@ struct AddBudgetView: View {
                 .padding(.top,15)
                 
                 
-                Section {
+                VStack{
                     List{
-                    ForEach(expenses, id: \.self) { expense in
-                        HStack {
-                            Text("\(expense.name ?? "")")
-                                .frame(width: 150, alignment: .leading) // Adjust the width as needed
-                            Spacer()
-                            Text("\(expense.category ?? "")")
-                                .frame(width: 100, alignment: .leading) // Adjust the width as needed
-                            Spacer()
-                            Text("\(expense.amount)")
-                                .frame(width: 60, alignment: .leading) // Adjust the width as needed
-                            Spacer()
-                            
-                            Button(action: {
-                                if let index = expenses.firstIndex(of: expense) {
-                                    expenses.remove(at: index)
+                        ForEach(expenses, id: \.self) { expense in
+                            HStack {
+                                Spacer()
+                                Text("\(expense.name ?? "")")
+                                   // Adjust the width as needed
+                                Spacer()
+                                Text("\(expense.category ?? "")")
+                                   // Adjust the width as needed
+                                Spacer()
+                                Text("\(expense.amount)")
+                                  // Adjust the width as needed
+                                Spacer()
+                                Button(action: {
+                                    if let index = expenses.firstIndex(of: expense) {
+                                        expenses.remove(at: index)
+                                    }
+                                }) {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(.red)
                                 }
-                            }) {
-                                Image(systemName: "trash")
-                                    .foregroundColor(.red)
+                                Spacer()
+                                
                             }
-                         
+                            
+                            
                         }
-                        
                     }
-                }
                     
-            }
+                }
+            
                 .padding(.top, 20)
 
                 
