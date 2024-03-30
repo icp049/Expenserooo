@@ -14,7 +14,7 @@ struct AddBudgetView: View {
     @State private var extramoney = ""
     
     
-    let categorySelection = ["🏡 Rent/Mortgage", "💸 Bills" ,"🏛 Loan", "🍽 Food", "✈️ Travel", "📱 Subscription", "😄 My Wants","👉 Essentials", "🚘 Transportation/Gas"]
+    let categorySelection = ["🏡 Crib", "💸 Bills" ,"🏛 Loan", "🍽 Eat Out", "✈️ Travel", "📱 Subscription", "😄 My Wants","👉 Essentials", "🚘 Gas", "🚌 Commute","🛒 Grocery","🤸‍♂️ Fitness" ]
     let sourceSelection = ["Chequing", "Savings"]
     
     
@@ -134,15 +134,18 @@ struct AddBudgetView: View {
                 .padding(.top,15)
                 
                 
-                VStack{
+                VStack(){
                     List{
                         ForEach(expenses, id: \.self) { expense in
                             HStack {
+                                
                                     Text("\(expense.name ?? "")")
                                         .frame(maxWidth: 160 ,alignment: .leading) // Adjust alignment as needed
                                     Spacer()
+                               
                                     Text("\(expense.category ?? "")")
-                                        .frame(maxWidth: 190 ,alignment: .center) // Adjust alignment as needed
+                                        .frame(maxWidth: 190 ,alignment: .leading)
+                            
                                     Spacer()
                                     Text("\(formatAmount(expense.amount))")
                                         .frame(maxWidth: 50, alignment: .trailing) // Adjust alignment as needed
