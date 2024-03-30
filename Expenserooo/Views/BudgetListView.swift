@@ -20,87 +20,119 @@ struct BudgetListView: View {
     
     @State private var totalIncome: Double = UserDefaults.standard.double(forKey: "totalincome")
     @State private var totalSavings: Double = UserDefaults.standard.double(forKey: "totalsavings")
-   
-   
+    
+    
     
     var body: some View {
         NavigationView {
-            List {
+            
+            
+            
+            ZStack{
                 
-                VStack{
-                    Text("Total Income: \(formatAmount(totalIncome))")
-                    Text("Total Savings: \(formatAmount(totalSavings))")
-                    Text("Total Expenses: \(formatAmount(calculateTotalExpense()))")
-                    Text("Total Extra: \(formatAmount(calculateExtraMoney()))")
+                List {
                     
-                    
-                }
-                
-                
-                
-                
-                ForEach(budgets, id: \.id) { budget in
-                    NavigationLink(destination: BudgetDetailView(budget: budget, totalIncome: $totalIncome, totalSavings: $totalSavings)) {
-                        VStack(alignment: .leading) {
-                            Text(budget.name ?? "")
-                                .font(.headline)
-                            
-                            Text("Sourced From: \(budget.sourcecategory ?? ""))")
-                                .foregroundColor(.secondary)
-                            
-                            Text("Budget: \(formatAmount(budget.sourceamount))")
-                                .foregroundColor(.secondary)
-                            
-                            // Display Expenses
-                            if let expenses = budget.expenses {
-                                Section(header: Text("Expenses")) {
-                                    ForEach(expenses.allObjects as! [Expense], id: \.self) { expense in
-                                        HStack {
-                                            Text("\(expense.name ?? "")")
-                                            Spacer()
-                                            Text("\(formatAmount(expense.amount))")
-                                            Spacer()
-                                            Text("\(expense.category ?? "")")
-                                            
-                                        }
-                                    }
-                                    
-                                    // Display the total expense using the new function
-                                    Text("Total Expense:")
-                                    Text("\(formatAmount(budget.totalexpense))")
-                                    
-                                    
-                                    
-                                    Text("Extra Money:")
-                                    Text("\(formatAmount(budget.extramoney))")
-                                    
-                                    
-                                }
-                            }
-                        }
+                    VStack{
+                        Text("Total Income: \(formatAmount(totalIncome))")
+                        Text("Total Savings: \(formatAmount(totalSavings))")
+                        Text("Total Expenses: \(formatAmount(calculateTotalExpense()))")
+                        Text("Total Extra: \(formatAmount(calculateExtraMoney()))")
+                        
                         
                     }
+                    
+                    
+                    
+                    
+                    ForEach(budgets, id: \.id) { budget in
+                        NavigationLink(destination: BudgetDetailView(budget: budget, totalIncome: $totalIncome, totalSavings: $totalSavings)) {
+                            VStack(alignment: .leading) {
+                                Text(budget.name ?? "")
+                                    .font(.headline)
+                                
+                                Text("Sourced From: \(budget.sourcecategory ?? ""))")
+                                    .foregroundColor(.secondary)
+                                
+                                Text("Budget: \(formatAmount(budget.sourceamount))")
+                                    .foregroundColor(.secondary)
+                                
+                                // Display Expenses
+                                if let expenses = budget.expenses {
+                                    Section(header: Text("Expenses")) {
+                                        ForEach(expenses.allObjects as! [Expense], id: \.self) { expense in
+                                            HStack {
+                                                Text("\(expense.name ?? "")")
+                                                Spacer()
+                                                Text("\(formatAmount(expense.amount))")
+                                                Spacer()
+                                                Text("\(expense.category ?? "")")
+                                                
+                                            }
+                                        }
+                                        
+                                        // Display the total expense using the new function
+                                        Text("Total Expense:")
+                                        Text("\(formatAmount(budget.totalexpense))")
+                                        
+                                        
+                                        
+                                        Text("Extra Money:")
+                                        Text("\(formatAmount(budget.extramoney))")
+                                        
+                                        
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                    .onDelete(perform: deleteBudget)
+                    
                 }
-                .onDelete(perform: deleteBudget)
                 
-            }
-            
-            
-            
-            
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingAddView.toggle()
-                    } label: {
-                        Label("Add Budget", systemImage: "plus")
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            showingAddView.toggle()
+                        }) {
+                            Text("+")
+                                .font(.system(.largeTitle))
+                                .frame(width: 77, height: 70)
+                                .foregroundColor(Color.white)
+                                .padding(.bottom, 7)
+                        }
+                        .background(Color.blue)
+                        .cornerRadius(38.5)
+                        .padding()
+                        .shadow(color: Color.black.opacity(0.3),
+                                radius: 3,
+                                x: 3,
+                                y: 3)
                     }
                 }
+                .sheet(isPresented: $showingAddView) {
+                    AddBudgetView(totalIncome: $totalIncome, totalSavings: $totalSavings)
+                }
                 
             }
-            .sheet(isPresented: $showingAddView) {
-                AddBudgetView(totalIncome: $totalIncome, totalSavings: $totalSavings)
-            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -118,7 +150,7 @@ struct BudgetListView: View {
             
             
             
-               
+            
             
             
             
@@ -140,16 +172,16 @@ struct BudgetListView: View {
     
     
     private func calculateTotalExpense() -> Double {
-          return budgets.map { $0.totalexpense }.reduce(0, +)
-      }
-      
-      private func calculateExtraMoney() -> Double {
-          return budgets.map { $0.extramoney }.reduce(0, +)
-      }
+        return budgets.map { $0.totalexpense }.reduce(0, +)
+    }
     
-  
+    private func calculateExtraMoney() -> Double {
+        return budgets.map { $0.extramoney }.reduce(0, +)
+    }
     
-   
+    
+    
+    
     
 }
 
