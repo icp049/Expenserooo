@@ -22,16 +22,19 @@ struct BudgetListView: View {
     
     
     var body: some View {
-        NavigationView {
             VStack{
-            VStack{
-                Text("Total Income: \(formatAmount(totalIncome))")
-                Text("Total Savings: \(formatAmount(totalSavings))")
-                Text("Total Expenses: \(formatAmount(calculateTotalExpense()))")
-                Text("Total Extra: \(formatAmount(calculateExtraMoney()))")
-                
-                
-            }
+                HStack{
+                    VStack(alignment: .leading){
+                        Text("Total Income: \(formatAmount(totalIncome))")
+                        Text("Total Savings: \(formatAmount(totalSavings))")
+                        Text("Total Expenses: \(formatAmount(calculateTotalExpense()))")
+                        Text("Total Extra: \(formatAmount(calculateExtraMoney()))")
+
+                    }
+                    
+                    Spacer()
+                }
+                .padding(.top,10)
             
             ZStack{
                 
@@ -113,9 +116,9 @@ struct BudgetListView: View {
             
             
         }
-            
-        }
-        .navigationViewStyle(.stack)
+          
+        
+      
     }
     
     
