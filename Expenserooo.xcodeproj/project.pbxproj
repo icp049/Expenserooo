@@ -12,6 +12,7 @@
 		A606AACF2B8A735200B3A93A /* ColoredBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606AACE2B8A735200B3A93A /* ColoredBox.swift */; };
 		A606AAD32B95486500B3A93A /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606AAD22B95486400B3A93A /* SharedData.swift */; };
 		A63A85912BB7D1FF00B4B100 /* ArcShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63A85902BB7D1FF00B4B100 /* ArcShape.swift */; };
+		A63A85952BB7D87B00B4B100 /* MainAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63A85942BB7D87B00B4B100 /* MainAddButton.swift */; };
 		A692933C2B6DE95F001AB512 /* RUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692933B2B6DE95F001AB512 /* RUButton.swift */; };
 		A69293472B6DF5BF001AB512 /* BudgetModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A69293452B6DF5BF001AB512 /* BudgetModel.xcdatamodeld */; };
 		A69293492B6DF786001AB512 /* AddBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69293482B6DF786001AB512 /* AddBudgetView.swift */; };
@@ -31,6 +32,7 @@
 		A606AACE2B8A735200B3A93A /* ColoredBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredBox.swift; sourceTree = "<group>"; };
 		A606AAD22B95486400B3A93A /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		A63A85902BB7D1FF00B4B100 /* ArcShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcShape.swift; sourceTree = "<group>"; };
+		A63A85942BB7D87B00B4B100 /* MainAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAddButton.swift; sourceTree = "<group>"; };
 		A692933B2B6DE95F001AB512 /* RUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUButton.swift; sourceTree = "<group>"; };
 		A69293462B6DF5BF001AB512 /* BudgetModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetModel.xcdatamodel; sourceTree = "<group>"; };
 		A69293482B6DF786001AB512 /* AddBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			children = (
 				A692933B2B6DE95F001AB512 /* RUButton.swift */,
 				A606AACE2B8A735200B3A93A /* ColoredBox.swift */,
+				A63A85942BB7D87B00B4B100 /* MainAddButton.swift */,
 			);
 			path = COmponents;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				A69293472B6DF5BF001AB512 /* BudgetModel.xcdatamodeld in Sources */,
 				A606AAC62B78974500B3A93A /* DoubleFormatter.swift in Sources */,
 				A692933C2B6DE95F001AB512 /* RUButton.swift in Sources */,
+				A63A85952BB7D87B00B4B100 /* MainAddButton.swift in Sources */,
 				A692934D2B6EA968001AB512 /* BudgetListView.swift in Sources */,
 				A606AACF2B8A735200B3A93A /* ColoredBox.swift in Sources */,
 			);
