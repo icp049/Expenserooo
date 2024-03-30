@@ -24,7 +24,6 @@ struct BudgetListView: View {
     var body: some View {
         NavigationView {
             VStack{
-            
             VStack{
                 Text("Total Income: \(formatAmount(totalIncome))")
                 Text("Total Savings: \(formatAmount(totalSavings))")
@@ -39,34 +38,42 @@ struct BudgetListView: View {
                 List {
                     
                     ForEach(budgets, id: \.id) { budget in
-                        
-                        ZStack(alignment:.leading){
-                            NavigationLink(destination: BudgetDetailView(budget: budget, totalIncome: $totalIncome, totalSavings: $totalSavings)) {
-                                EmptyView()
+                       
+                            ZStack(alignment:.leading){
+                                NavigationLink(destination: BudgetDetailView(budget: budget, totalIncome: $totalIncome, totalSavings: $totalSavings)) {
+                                    EmptyView()
+                                }
+                                .opacity(0)
+                                VStack(alignment: .leading) {
+                                    Text(budget.name ?? "")
+                                        .font(.headline)
+                                    
+                                    Text("Sourced From: \(budget.sourcecategory ?? ""))")
+                                        .foregroundColor(.secondary)
+                                    
+                                    Text("Budget: \(formatAmount(budget.sourceamount))")
+                                        .foregroundColor(.secondary)
+                                    
+                                    // Display Expenses
+                                    
+                                }
+                                .padding()
+                                
+                                
                             }
-                            .opacity(0)
-                            VStack(alignment: .leading) {
-                                Text(budget.name ?? "")
-                                    .font(.headline)
-                                
-                                Text("Sourced From: \(budget.sourcecategory ?? ""))")
-                                    .foregroundColor(.secondary)
-                                
-                                Text("Budget: \(formatAmount(budget.sourceamount))")
-                                    .foregroundColor(.secondary)
-                                
-                                // Display Expenses
-                                
-                            }
-                      
                         
-                        }
+                            .background(RoundedRectangle(cornerRadius: 12).fill(.gray))
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                        
                       
                     }
                     .onDelete(perform: deleteBudget)
                     
                 }
-              
+                
+                .listStyle(InsetListStyle())
                 
                 
                 VStack {
