@@ -10,7 +10,6 @@
 		A606AAC62B78974500B3A93A /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606AAC52B78974500B3A93A /* DoubleFormatter.swift */; };
 		A606AAC92B7C63A100B3A93A /* AddIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606AAC82B7C63A100B3A93A /* AddIncome.swift */; };
 		A606AACF2B8A735200B3A93A /* ColoredBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606AACE2B8A735200B3A93A /* ColoredBox.swift */; };
-		A606AAD12B95436200B3A93A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606AAD02B95436200B3A93A /* HomeView.swift */; };
 		A606AAD32B95486500B3A93A /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A606AAD22B95486400B3A93A /* SharedData.swift */; };
 		A692933C2B6DE95F001AB512 /* RUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A692933B2B6DE95F001AB512 /* RUButton.swift */; };
 		A69293472B6DF5BF001AB512 /* BudgetModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A69293452B6DF5BF001AB512 /* BudgetModel.xcdatamodeld */; };
@@ -29,7 +28,6 @@
 		A606AAC52B78974500B3A93A /* DoubleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatter.swift; sourceTree = "<group>"; };
 		A606AAC82B7C63A100B3A93A /* AddIncome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncome.swift; sourceTree = "<group>"; };
 		A606AACE2B8A735200B3A93A /* ColoredBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredBox.swift; sourceTree = "<group>"; };
-		A606AAD02B95436200B3A93A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A606AAD22B95486400B3A93A /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		A692933B2B6DE95F001AB512 /* RUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUButton.swift; sourceTree = "<group>"; };
 		A69293462B6DF5BF001AB512 /* BudgetModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetModel.xcdatamodel; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				A69293502B6F6C48001AB512 /* PieChartView.swift */,
 				A69293522B6F6F85001AB512 /* EditBudgetView.swift */,
 				A606AAC82B7C63A100B3A93A /* AddIncome.swift */,
-				A606AAD02B95436200B3A93A /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,7 +218,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A606AAD12B95436200B3A93A /* HomeView.swift in Sources */,
 				A69293512B6F6C48001AB512 /* PieChartView.swift in Sources */,
 				A6A74BD62B6DE1F4005629AF /* DataController.swift in Sources */,
 				A6A74BC22B6DDEA1005629AF /* ExpenseroooApp.swift in Sources */,
