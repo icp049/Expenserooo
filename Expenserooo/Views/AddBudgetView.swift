@@ -41,6 +41,7 @@ struct AddBudgetView: View {
                 HStack{
                     
                     Text("Get it from")
+                    .foregroundStyle(.secondary)
                     
                     
                     Picker("Source", selection: $sourcecategory) {
@@ -72,7 +73,7 @@ struct AddBudgetView: View {
             VStack{
                 
                 Text("M Y  E X P E N S E S")
-                  
+                
                 
                 
                 TextField("Expense Name", text: $expenseName)
@@ -127,13 +128,14 @@ struct AddBudgetView: View {
                         
                     }
                     
-                 
+                    
                     
                 }
                 .padding(.top,15)
                 
                 
                 Section {
+                    List{
                     ForEach(expenses, id: \.self) { expense in
                         HStack {
                             Text("\(expense.name ?? "")")
@@ -145,7 +147,7 @@ struct AddBudgetView: View {
                             Text("\(expense.amount)")
                                 .frame(width: 60, alignment: .leading) // Adjust the width as needed
                             Spacer()
-
+                            
                             Button(action: {
                                 if let index = expenses.firstIndex(of: expense) {
                                     expenses.remove(at: index)
@@ -154,11 +156,14 @@ struct AddBudgetView: View {
                                 Image(systemName: "trash")
                                     .foregroundColor(.red)
                             }
+                         
                         }
-                        .padding(.horizontal)
+                        
                     }
                 }
-                .padding(.top, 30)
+                    
+            }
+                .padding(.top, 20)
 
                 
             }
