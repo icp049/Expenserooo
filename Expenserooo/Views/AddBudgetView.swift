@@ -113,7 +113,7 @@ struct AddBudgetView: View {
                     
                     Spacer()
                     
-                    RUButton(title: "Add + " , background: .blue){
+                    SmallAddButton(title: "Add + " , background: .blue){
                         
                         let newExpense = Expense(context: managedObjContext)
                         newExpense.name = expenseName
@@ -140,26 +140,22 @@ struct AddBudgetView: View {
                             HStack {
                                 Spacer()
                                 Text("\(expense.name ?? "")")
-                                   // Adjust the width as needed
+                                // Adjust the width as needed
                                 Spacer()
                                 Text("\(expense.category ?? "")")
-                                   // Adjust the width as needed
+                                // Adjust the width as needed
                                 Spacer()
-                                Text("\(expense.amount)")
-                                  // Adjust the width as needed
-                                Spacer()
-                                Button(action: {
-                                    if let index = expenses.firstIndex(of: expense) {
-                                        expenses.remove(at: index)
-                                    }
-                                }) {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(.red)
-                                }
+                                Text("\(formatAmount(expense.amount))")
+                                // Adjust the width as needed
                                 Spacer()
                                 
                             }
                             
+                            
+                            
+                        }
+                        .onDelete { indexSet in
+                            expenses.remove(atOffsets: indexSet)
                             
                         }
                     }
@@ -226,7 +222,12 @@ struct AddBudgetView: View {
 
 
 
+
 private func calculateTotalExpense(_ expenses: [Expense]) -> Double {
     return expenses.map { $0.amount }.reduce(0, +)
 }
+
+
+
+
 
