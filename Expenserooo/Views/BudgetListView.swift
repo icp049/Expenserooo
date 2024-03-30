@@ -36,13 +36,15 @@ struct BudgetListView: View {
             
             ZStack{
                 
-                
-                
-                
                 List {
                     
                     ForEach(budgets, id: \.id) { budget in
-                        NavigationLink(destination: BudgetDetailView(budget: budget, totalIncome: $totalIncome, totalSavings: $totalSavings)) {
+                        
+                        ZStack(alignment:.leading){
+                            NavigationLink(destination: BudgetDetailView(budget: budget, totalIncome: $totalIncome, totalSavings: $totalSavings)) {
+                                EmptyView()
+                            }
+                            .opacity(0)
                             VStack(alignment: .leading) {
                                 Text(budget.name ?? "")
                                     .font(.headline)
@@ -54,38 +56,17 @@ struct BudgetListView: View {
                                     .foregroundColor(.secondary)
                                 
                                 // Display Expenses
-                                if let expenses = budget.expenses {
-                                    Section(header: Text("Expenses")) {
-                                        ForEach(expenses.allObjects as! [Expense], id: \.self) { expense in
-                                            HStack {
-                                                Text("\(expense.name ?? "")")
-                                                Spacer()
-                                                Text("\(formatAmount(expense.amount))")
-                                                Spacer()
-                                                Text("\(expense.category ?? "")")
-                                                
-                                            }
-                                        }
-                                        
-                                        // Display the total expense using the new function
-                                        Text("Total Expense:")
-                                        Text("\(formatAmount(budget.totalexpense))")
-                                        
-                                        
-                                        
-                                        Text("Extra Money:")
-                                        Text("\(formatAmount(budget.extramoney))")
-                                        
-                                        
-                                    }
-                                }
+                                
                             }
-                            
+                      
+                        
                         }
+                      
                     }
                     .onDelete(perform: deleteBudget)
                     
                 }
+              
                 
                 
                 VStack {
