@@ -9,9 +9,7 @@ struct BudgetListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Budget.date, ascending: false)],
         animation: .default
     )
-    
-    
-    
+
     
     var budgets: FetchedResults<Budget>
     
@@ -25,24 +23,23 @@ struct BudgetListView: View {
     
     var body: some View {
         NavigationView {
+            VStack{
             
-            
+            VStack{
+                Text("Total Income: \(formatAmount(totalIncome))")
+                Text("Total Savings: \(formatAmount(totalSavings))")
+                Text("Total Expenses: \(formatAmount(calculateTotalExpense()))")
+                Text("Total Extra: \(formatAmount(calculateExtraMoney()))")
+                
+                
+            }
             
             ZStack{
                 
+                
+                
+                
                 List {
-                    
-                    VStack{
-                        Text("Total Income: \(formatAmount(totalIncome))")
-                        Text("Total Savings: \(formatAmount(totalSavings))")
-                        Text("Total Expenses: \(formatAmount(calculateTotalExpense()))")
-                        Text("Total Extra: \(formatAmount(calculateExtraMoney()))")
-                        
-                        
-                    }
-                    
-                    
-                    
                     
                     ForEach(budgets, id: \.id) { budget in
                         NavigationLink(destination: BudgetDetailView(budget: budget, totalIncome: $totalIncome, totalSavings: $totalSavings)) {
@@ -152,7 +149,7 @@ struct BudgetListView: View {
             
             
             
-            
+        }
             
         }
         .navigationViewStyle(.stack)
